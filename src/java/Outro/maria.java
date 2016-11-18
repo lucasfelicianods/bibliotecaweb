@@ -11,4 +11,8 @@ package Outro;
  */
 public class maria {
     
+    public static void main(String[] args) {
+        
+    }
+    
 }
