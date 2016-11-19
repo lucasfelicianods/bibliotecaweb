@@ -10,8 +10,12 @@ package ok;
  * @author jaire
  */
 
-private String teste;
+
 public class ok {
+    
+    public static void main(String[] args) {
+        
+    }
     
     
 }
