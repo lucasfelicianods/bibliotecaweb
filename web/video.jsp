@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Cadastrar Item</title>
+        <title>Video</title>
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="images/favicon.ico">
@@ -82,7 +82,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>ESCOLHA SEU TIPO DE CADASTRO</marquee>
+                            <marquee>CADASTRAR VIDEO</marquee>
                         </h3>
                     </div>
 
@@ -100,18 +100,23 @@
                                 <form>
                                     <ul class="form-style-1">
 
+
+                                        <li><label>Tema</label>
+                                            <input type="text"  name="tema" class="field-divided" placeholder="tema" size="150"/></li>
                                         <li>
-                                            <a href="artigo.jsp"> <input  type="button" size="100" value="Cadastrar Artigo  " /></a>
+                                        <li><label>Diretor <span class="required">*</span></label>
+                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                        <li>
+                                        <li><label>Autor <span class="required">*</span></label>
+                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
+                                        <li>
+                                        
+
+                                        <li>
+                                            <input type="submit" value="Cadastrar" />
+                                            <input type="submit" value="Limpar" />
+
                                         </li>
-                                        <li>
-                                            <a href="livro.jsp"><input type="button" value="Cadastrar Livro    " /></a>
-                                        </li>
-                                        <li>
-                                             <a href="revista.jsp"><input type="button"" value="Cadastrar Revista " /></a>
-                                        </li>
-                                        <li>
-                                            <a href="video.jsp"> <input type="submit" value="Cadastrar Video    " /></a>
-                                        <li>
                                     </ul>
                                 </form>
 
