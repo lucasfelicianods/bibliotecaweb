@@ -111,6 +111,7 @@
                                             <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
                                         <li>
                                         
+                                            
 
                                         <li>
                                             <input type="submit" value="Cadastrar" />
