@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 
 public class Conexao {
+    // classe de conexao.
     private static Connection connection = null;
 
     public  static Connection getConnection() {
