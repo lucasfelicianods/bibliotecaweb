@@ -46,7 +46,7 @@
             </div>
             <section id="stuck_container">
                 <!--==============================
-                            Stuck menu
+                             menu
                 =================================-->
                 <div class="container">
                     <div class="row">
@@ -82,7 +82,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRO DE FUNCION√ÅRIO</marquee>
+                            <marquee>CADASTRO DE FUNCION¡RIO</marquee>
                         </h3>
                     </div>
 
@@ -101,7 +101,7 @@
                                     <ul class="form-style-1">
                                         <li>
                                             <label>Nome Completo <span class="required">*</span></label>
-                                            <input type="email" required name="nome" class="field-long" placeholder="Digite seu Nome Completo"/>
+                                            <input type="email" required name="nome" class="field-long" onblur="valida_campo_nome()" onKeypress="return valida_letras(event)" placeholder="Digite seu Nome Completo"/>
 
                                         </li>
                                         <li>
@@ -111,11 +111,11 @@
                                         </li>
 
                                         <label>Cpf <span class="required">*</span></label>
-                                        <input type="email" required name="cpf" class="field-long" placeholder="Digite seu cpf"/>
+                                        <input type="email" required name="cpf" class="field-long" onkeypress="return SomenteNumeros(event)" placeholder="Digite seu cpf" onblur="return verificarCPF(this.value)"/>
                                         </li>
                                         <li>
                                             <label>rg <span class="required">*</span></label>
-                                            <input type="email" required name="rg" class="field-long" placeholder="Digite seu rg"/>
+                                            <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)" placeholder="Digite seu rg"/>
                                         </li>
                                         <li>
                                             <label>dataCadastro <span class="required">*</span></label>
@@ -123,15 +123,15 @@
                                         </li>
                                         <li>
                                             <label>Telefone Residencial <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneResidencial" class="field-long" placeholder="Digite seu Telefone Residencial"/>
+                                            <input type="email" required name="TelefoneResidencial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
                                         </li>
                                         <li>
                                             <label>Telefone Celular <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneCelular" class="field-long" placeholder="Digite seu Telefone Celular"/>
+                                            <input type="email" required name="TelefoneCelular" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
                                         </li>
                                         <li>
                                             <label>Telefone Comercial <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneComercial" class="field-long" placeholder="Digite seu Telefone Comercial"/>
+                                            <input type="email" required name="TelefoneComercial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
                                         </li>
                                         <li>
                                             <label>Rua <span class="required">*</span></label>
@@ -173,7 +173,7 @@
             </div>
         </section>
         <!--==============================
-                      footer
+                      roda pÈ
         =================================-->
         <footer id="footer">
             <div class="container">

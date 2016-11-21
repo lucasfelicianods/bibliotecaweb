@@ -9,9 +9,7 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/form-style-1.css">
         
-
-
-        <script src="js/jquery.js"></script>
+          <script src="js/jquery.js"></script>
         <script src="js/jquery-migrate-1.1.1.js"></script>
         <script src="js/jquery.easing.1.3.js"></script>
         <script src="js/script.js"></script> 
@@ -47,7 +45,7 @@
             </div>
             <section id="stuck_container">
                 <!--==============================
-                            Stuck menu
+                             menu
                 =================================-->
                 <div class="container">
                     <div class="row">
@@ -135,7 +133,7 @@
             </div>
         </section>
         <!--==============================
-                      footer
+                      roda pé
         =================================-->
         <footer id="footer">
             <div class="container">

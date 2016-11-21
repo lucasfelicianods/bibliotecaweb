@@ -21,11 +21,10 @@
         <script src="js/jquery.ui.totop.js"></script>
         <script src="js/validacoes.js"></script>
         <script>
-            $(window).load(function () {
-                $().UItoTop({easingType: 'easeOutQuart'});
-                $('#stuck_container').tmStickUp({});
-            });
-        </script>
+                    $(window).load(function () {
+            $().UItoTop({easingType: 'easeOutQuart'});
+                    $('#stuck_container').tmStickUp({});
+            });        </script>
 
     </head>
     <body>
@@ -99,63 +98,65 @@
 
                                 <form>
                                     <ul class="form-style-1">
-                                       
-                                         <li>
+
+                                        <li>
                                             <label>Nome Completo <span class="required">*</span></label>
-                                            <input type="email" required name="nome" class="field-long" placeholder="Digite seu Nome Completo"/>
-                                            
+                                            <input type="email" required name="nome" class="field-long" onblur="valida_campo_nome()" onKeypress="return valida_letras(event)" placeholder="Digite seu Nome Completo"/>
+
                                         </li>
                                         <li>
                                             <label>Email <span class="required">*</span></label>
                                             <input type="email" required name="email" class="field-long" placeholder="Digite seu e-mail" />
-                                            
-                                        </li>
-                                        
-                                            <label>Cpf <span class="required">*</span></label>
-                                            <input type="email" required name="cpf" class="field-long" placeholder="Digite seu cpf"/>
+
                                         </li>
                                         <li>
-                                            <label>rg <span class="required">*</span></label>
-                                            <input type="email" required name="rg" class="field-long" placeholder="Digite seu rg"/>
+
+                                        <label>Cpf <span class="required">*</span></label>
+                                        <input type="email" required name="cpf" class="field-long"  onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu cpf" onblur="return verificarCPF(this.value)"/>
+                                         </li>
+                                                                
+                                        <li>
+                                        <label>Rg <span class="required">*</span></label>    
+                                        <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu rg"/>
                                         </li>
                                         <li>
                                             <label>dataCadastro <span class="required">*</span></label>
-                                            <input type="email" required name="dataCadastro" class="field-long" placeholder="Informe a data do cadastro"/>
+                                            <input type="email" required name="dataCadastro" class="field-long" onblur="verifica_campo_dataNascimento()" onkeyup="mascaraData(this)" placeholder="Informe a data do cadastro"/>
                                         </li>
                                         <li>
                                             <label>Telefone Residencial <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneResidencial" class="field-long" placeholder="Digite seu Telefone Residencial"/>
+                                            <input type="email" required name="TelefoneResidencial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
                                         </li>
-                                         <li>
+                                        <li>
                                             <label>Telefone Celular <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneCelular" class="field-long" placeholder="Digite seu Telefone Celular"/>
+                                            <input type="email" required name="TelefoneCelular" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
                                         </li>
-                                         <li>
+                                        <li>
                                             <label>Telefone Comercial <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneComercial" class="field-long" placeholder="Digite seu Telefone Comercial"/>
+                                            <input type="email" required name="TelefoneComercial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
                                         </li>
-                                           <li>
+                                        <li>
                                             <label>Rua <span class="required">*</span></label>
                                             <input type="email" required name="Rua" class="field-long" placeholder="Digite seu Rua"/>
                                         </li>
-                                            <li>
+                                        <li>
                                             <label>Bairro <span class="required">*</span></label>
                                             <input type="email" required name="Bairro" class="field-long" placeholder="Digite seu Bairro"/>
                                         </li>
-                                           <li>
+                                        <li>
                                             <label>Complemento <span class="required">*</span></label>
                                             <input type="email" required name="Complemento" class="field-long" placeholder="Digite seu Complemento"/>
                                         </li>
-                                          <li>
+                                        <li>
                                             <label>Cidade <span class="required">*</span></label>
                                             <input type="email" required name="Cidade" class="field-long" placeholder="Digite sua Cidade"/>
                                         </li>
-                                             <li>
+                                        <li>
                                             <label>Estado <span class="required">*</span></label>
                                             <input type="email" required name="Estado" class="field-long" placeholder="Digite seu Estado"/>
                                         </li>
-                                    
-                                        
+
+
                                         <li>
                                             <label>Opções</label>
                                             <select name="field4" class="field-select">
@@ -164,7 +165,7 @@
                                                 <option value="General Question">Administrador</option>
                                             </select>
                                         </li>
-                                    
+
                                         <li>
                                             <input type="submit" value="Cadastrar" />
                                             <input type="submit" value="Limpar" />
