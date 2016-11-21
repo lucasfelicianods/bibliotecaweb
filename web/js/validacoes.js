@@ -1,5 +1,5 @@
 
-//FUNÇÃO DE VALIDAÇÃO CAMPO NOME
+//FUNï¿½ï¿½O DE VALIDAï¿½ï¿½O CAMPO NOME
 function valida_campo_nome() {
 
     var x = document.getElementById("nome").value;
@@ -24,7 +24,7 @@ function valida_campo_nome() {
     }
 }
 
-//VALIDAÇÃO DO CAMPO NOME SOMENTE COM LETRAS 
+//VALIDAï¿½ï¿½O DO CAMPO NOME SOMENTE COM LETRAS 
 function valida_letras(e) {
     var tecla = (window.event) ? event.keyCode : e.which;
     var tecla = new Number();
@@ -42,13 +42,13 @@ function valida_letras(e) {
     }
 }
 
-/* === FIM VALIDAÇÃO DE NOME === */
+/* === FIM VALIDAï¿½ï¿½O DE NOME === */
 
 
 
-/* ===  VALIDAÇÃO DE EMAIL === */
+/* ===  VALIDAï¿½ï¿½O DE EMAIL === */
 
-// FUNÇÃO DE VALIDAÇÃO CAMPO EMAIL
+// FUNï¿½ï¿½O DE VALIDAï¿½ï¿½O CAMPO EMAIL
 function valida_campo_email() {
 
     var x = document.getElementById("email").value;
@@ -63,7 +63,7 @@ function valida_campo_email() {
     if (filter.test(str))
         valido = true;
     else {
-        alert("Este endereço de e-mail não é válido!");
+        alert("Este endereï¿½o de e-mail nï¿½o ï¿½ vï¿½lido!");
         document.getElementById("email").focus();
         document.getElementById("email").value = "";
         valido = false;
@@ -72,13 +72,13 @@ function valida_campo_email() {
 
     var valido;
 }
-/* ===  FIM VALIDAÇÃO DE EMAIL === */
+/* ===  FIM VALIDAï¿½ï¿½O DE EMAIL === */
 
 
-//FUNÇÃO VALIDAÇÃO COMPO DATA 
+//FUNï¿½ï¿½O VALIDAï¿½ï¿½O COMPO DATA 
 function verifica_campo_dataNascimento() {
 
-    //VALIDAÇÃO DE O CAMPO ESTA VAZIO OU COM ESPAÇO 
+    //VALIDAï¿½ï¿½O DE O CAMPO ESTA VAZIO OU COM ESPAï¿½O 
     var x = document.getElementById("data").value;
     if (x == null || x == "" || x == " ") {
         alert(" O campo data e obrigadorio! Deve ser preenchido!");
@@ -87,7 +87,7 @@ function verifica_campo_dataNascimento() {
         return false;
     }
 
-    //VALIDAÇÃO DE FORMATO DE DATA DD/MM/AAAA E VALIDAÇÃO DE DATA ATUAL 
+    //VALIDAï¿½ï¿½O DE FORMATO DE DATA DD/MM/AAAA E VALIDAï¿½ï¿½O DE DATA ATUAL 
     erro = 0;
     hoje = new Date();
     dataAtual = new Date();
@@ -107,13 +107,13 @@ function verifica_campo_dataNascimento() {
         }
 
         if (new Date(ano, mes - 1, dia) > new Date(dataAtual.getFullYear(), dataAtual.getMonth(), dataAtual.getDate())) {
-            alert("Data não pode ser maior que data atual");
+            alert("Data nï¿½o pode ser maior que data atual");
             document.getElementById("data").focus();
             document.getElementById("data").value = "";
             return false;
         }
 
-        //VALIDAÇÃO DE ANO BISSEXTO
+        //VALIDAï¿½ï¿½O DE ANO BISSEXTO
         if ((mes == 02)) {
             if ((dia < 01) || (dia > 28)) {
                 alert("Data invalida! Ano Bissexto");
@@ -131,7 +131,7 @@ function verifica_campo_dataNascimento() {
     }
 }
 
-//FUNÇÃO COLOCA MASCA NO CAMPO DATA 
+//FUNï¿½ï¿½O COLOCA MASCA NO CAMPO DATA 
 function mascaraData(campoData) {
     var dtnascimento = campoData.value;
     if (dtnascimento.length == 2) {
@@ -192,13 +192,66 @@ function MascaraCPF(cpf){
         }       
         return formataCampo(cpf, '000.000.000-00', event);
 }
-/* === FIM VALIDAÇÃO DE DATA === */
+/* === FIM VALIDAï¿½ï¿½O DE DATA === */
 
+/* == SOMENTE NUMEROS NO CAMPO INPUT == */
 
+function SomenteNumeros(e)
+{
+	var tecla=new Number();
+	if(window.event) {
+		tecla = e.keyCode;
+	}
+	else if(e.which) {
+		tecla = e.which;
+	}
+	else {
+		return true;
+	}
+	if((tecla >= "97") && (tecla <= "122")){
+		return false;
+	}
+}
 
-
-
-
+ function verificarCPF(c){
+    var i;
+    s = c;
+    var c = s.substr(0,9);
+    var dv = s.substr(9,2);
+    var d1 = 0;
+    var v = false;
+ 
+    for (i = 0; i < 9; i++){
+        d1 += c.charAt(i)*(10-i);
+    }
+    if (d1 == 0){
+        alert("CPF Invalido")
+        v = true;
+        return false;
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9) d1 = 0;
+    if (dv.charAt(0) != d1){
+        alert("CPF Invalido")
+        v = true;
+        return false;
+    }
+ 
+    d1 *= 2;
+    for (i = 0; i < 9; i++){
+        d1 += c.charAt(i)*(11-i);
+    }
+    d1 = 11 - (d1 % 11);
+    if (d1 > 9) d1 = 0;
+    if (dv.charAt(1) != d1){
+        alert("CPF Invalido")
+        v = true;
+        return false;
+    }
+    if (!v) {
+        alert(c + " CPF Valido")
+    }
+}
 
 
 

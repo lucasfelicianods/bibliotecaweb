@@ -46,7 +46,7 @@
             </div>
             <section id="stuck_container">
                 <!--==============================
-                            Stuck menu
+                           MEnu
                 =================================-->
                 <div class="container">
                     <div class="row">
@@ -74,7 +74,7 @@
             </section>
         </header>
         <!--=====================
-                  Content
+                  CORPO
         ======================-->
         <section id="content"><div class="ic"></div>
             <div class="container">
@@ -82,7 +82,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRAR ATTIGO</marquee>
+                            <marquee>CADASTRAR ARTIGO</marquee>
                         </h3>
                     </div>
 
@@ -135,7 +135,7 @@
             </div>
         </section>
         <!--==============================
-                      footer
+                      RODA PÉ
         =================================-->
         <footer id="footer">
             <div class="container">

@@ -46,7 +46,7 @@
   </div>
   <section id="stuck_container">
   <!--==============================
-              Stuck menu
+               menu
   =================================-->
     <div class="container">
       <div class="row">
@@ -127,7 +127,7 @@
   </div>
 </section>
 <!--==============================
-              footer
+              rodapé
 =================================-->
 <footer id="footer">
   <div class="container">
