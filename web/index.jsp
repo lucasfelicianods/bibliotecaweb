@@ -77,7 +77,7 @@
     <div class="container">
       <div class="row">
         <div class="grid_4">
-          <a href="cadastro.jsp" class="banner "><div class="maxheight">
+          <a href="cadastrarItem.jsp" class="banner "><div class="maxheight">
             <div class="fa fa-globe"></div>Cadastros</div>
           </a>
           <a href="relatorio.jsp" class="banner "><div class="maxheight">
