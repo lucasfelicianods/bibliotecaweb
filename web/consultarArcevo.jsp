@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Livro</title>
+        <title>Cliente</title>
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="images/favicon.ico">
         <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/form-style-1.css">
-        
-          <script src="js/jquery.js"></script>
+
+
+        <script src="js/jquery.js"></script>
         <script src="js/jquery-migrate-1.1.1.js"></script>
         <script src="js/jquery.easing.1.3.js"></script>
         <script src="js/script.js"></script> 
@@ -20,11 +21,10 @@
         <script src="js/jquery.ui.totop.js"></script>
         <script src="js/validacoes.js"></script>
         <script>
-            $(window).load(function () {
-                $().UItoTop({easingType: 'easeOutQuart'});
-                $('#stuck_container').tmStickUp({});
-            });
-        </script>
+                    $(window).load(function () {
+            $().UItoTop({easingType: 'easeOutQuart'});
+                    $('#stuck_container').tmStickUp({});
+            });        </script>
 
     </head>
     <body>
@@ -45,7 +45,7 @@
             </div>
             <section id="stuck_container">
                 <!--==============================
-                             menu
+                            Stuck menu
                 =================================-->
                 <div class="container">
                     <div class="row">
@@ -81,7 +81,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRAR LIVRO</marquee>
+                            <marquee>CONSULTE NOSSO ACERVO</marquee>
                         </h3>
                     </div>
 
@@ -99,23 +99,20 @@
                                 <form>
                                     <ul class="form-style-1">
 
-
-                                        <li><label>Codigo De Barras</label>
-                                            <input type="text"  name="coidgo" class="field-divided" placeholder="codigo" size="150"/></li>
+                                       <li>
+                                            <label>Parâmetros de Pesquisa</label>
+                                            <select name="field4" class="field-select">
+                                                <option value="Advertise"></option>
+                                                <option value="Advertise">Autor</option>
+                                                <option value="Partnership">Editora</option>
+                                                <option value="General Question">ISBN</option>
+                                                <option value="General Question">Titulo</option>
+                                            </select>
+                                        </li>
+                                       
                                         <li>
-                                        <li><label>Isbn <span class="required">*</span></label>
-                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
-                                        <li>
-                                        <li><label>Descrição <span class="required">*</span></label>
-                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
-                                        <li>
-                                        
-                                        
-
-                                        <li>
-                                            <input type="submit" value="Cadastrar" />
+                                            <input type="submit" value="Consultar" />
                                             <input type="submit" value="Limpar" />
-
                                         </li>
                                     </ul>
                                 </form>
@@ -133,7 +130,7 @@
             </div>
         </section>
         <!--==============================
-                      roda pé
+                      footer
         =================================-->
         <footer id="footer">
             <div class="container">
