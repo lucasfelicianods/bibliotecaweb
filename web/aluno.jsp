@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Cadastro de Funcionario</title>
+        <title>Cadastro de Aluno</title>
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="images/favicon.ico">
@@ -24,8 +24,7 @@
             $(window).load(function () {
                 $().UItoTop({easingType: 'easeOutQuart'});
                 $('#stuck_container').tmStickUp({});
-            });
-        </script>
+            });</script>
 
     </head>
     <body>
@@ -46,7 +45,7 @@
             </div>
             <section id="stuck_container">
                 <!--==============================
-                             menu
+                            Stuck menu
                 =================================-->
                 <div class="container">
                     <div class="row">
@@ -82,7 +81,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRO DE FUNCIONÁRIO</marquee>
+                            <marquee>CADASTRO DE ALUNO</marquee>
                         </h3>
                     </div>
 
@@ -99,9 +98,10 @@
 
                                 <form>
                                     <ul class="form-style-1">
+
                                         <li>
                                             <label>Tipo De Cadastro </label>
-                                            <input type="email" required name="nome" class="field-long" readonly="" placeholder="FUNCIONARIO"/>
+                                            <input type="email" required name="nome" class="field-long" readonly="" placeholder="ALUNO"/>
 
                                         </li>
                                         <li>
@@ -114,17 +114,19 @@
                                             <input type="email" required name="email" class="field-long" placeholder="Digite seu e-mail" />
 
                                         </li>
+                                        <li>
 
-                                        <label>Cpf <span class="required">*</span></label>
-                                        <input type="email" required name="cpf" class="field-long" onkeypress="return SomenteNumeros(event)" placeholder="Digite seu cpf" onblur="return verificarCPF(this.value)"/>
+                                            <label>Cpf <span class="required">*</span></label>
+                                            <input type="email" required name="cpf" class="field-long"  onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu cpf" onblur="return verificarCPF(this.value)"/>
+                                        </li>
+
+                                        <li>
+                                            <label>Rg <span class="required">*</span></label>    
+                                            <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu rg"/>
                                         </li>
                                         <li>
-                                            <label>rg <span class="required">*</span></label>
-                                            <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)" placeholder="Digite seu rg"/>
-                                        </li>
-                                        <li>
-                                            <label>dataCadastro <span class="required">*</span></label>
-                                            <input type="email" required name="dataCadastro" class="field-long" placeholder="Informe a data do cadastro"/>
+                                            <label>Data Cadastro <span class="required">*</span></label>
+                                            <input type="email" required name="dataCadastro" class="field-long" onblur="verifica_campo_dataNascimento()" onkeyup="mascaraData(this)" placeholder="Informe a data do cadastro"/>
                                         </li>
                                         <li>
                                             <label>Telefone Residencial <span class="required">*</span></label>
@@ -158,6 +160,10 @@
                                             <label>Estado <span class="required">*</span></label>
                                             <input type="email" required name="Estado" class="field-long" placeholder="Digite seu Estado"/>
                                         </li>
+
+
+
+
                                         <li>
                                             <input type="submit" value="Cadastrar" />
                                             <input type="submit" value="Limpar" />
@@ -178,7 +184,7 @@
             </div>
         </section>
         <!--==============================
-                      roda pé
+                      footer
         =================================-->
         <footer id="footer">
             <div class="container">
