@@ -120,7 +120,11 @@
                                         <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu rg"/>
                                         </li>
                                         <li>
+<<<<<<< HEAD
                                             <label>Data Cadastro <span class="required">*</span></label>
+=======
+                                            <label>dataCadastro <span class="required">*</span></label>
+>>>>>>> origin/master
                                             <input type="email" required name="dataCadastro" class="field-long" onblur="verifica_campo_dataNascimento()" onkeyup="mascaraData(this)" placeholder="Informe a data do cadastro"/>
                                         </li>
                                         <li>
