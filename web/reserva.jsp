@@ -56,9 +56,9 @@
               <ul class="sf-menu">
             
                <li class="current"><a href="index.jsp">Home</a></li>
-               <li><a href="cadastrarItem.jsp">Cadastrar Acervo</a></li>
-               <li><a href="cadastrase.jsp">Cadastra-se</a></li>
-               <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+               <li><a href="cadastrarItem.jsp">Cadastrar Item</a></li>
+               <li><a href="cliente.jsp">Cliente</a></li>
+               <li><a href="funcionario.jsp">Funcionario</a></li>
                <li><a href="emprestimo.jsp">Emprestimo</a></li>
                <li><a href="reserva.jsp">Reserva</a></li>
                <li><a href="relatorio.jsp">Relatórios</a></li>
@@ -103,7 +103,7 @@
 	<input type="text"  name="coidgo" class="field-divided" placeholder="codigo" size="150"/></li>
     <li>
     <li><label>Titulo <span class="required">*</span></label>
-	<input type="text"  name="Titulo" class="field-divided" placeholder="Titulo" /></li>
+	<input type="text"  name="Titulo" class="field-divided" placeholder="First" size="150"/></li>
     <li>
            <li>
         <label>Cliente</label>

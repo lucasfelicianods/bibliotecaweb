@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Cadastro de Funcionario</title>
+        <title>Funcionario</title>
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="images/favicon.ico">
@@ -56,9 +56,9 @@
                                     <ul class="sf-menu">
 
                                         <li class="current"><a href="index.jsp">Home</a></li>
-                                        <li><a href="cadastrarItem.jsp">Cadastrar Acervo</a></li>
-                                        <li><a href="cadastrase.jsp">Cadastra-se</a></li>
-                                        <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+                                        <li><a href="cadastrarItem.jsp">Cadastrar Item</a></li>
+                                        <li><a href="cliente.jsp">Cliente</a></li>
+                                        <li><a href="funcionario.jsp">Funcionario</a></li>
                                         <li><a href="emprestimo.jsp">Emprestimo</a></li>
                                         <li><a href="reserva.jsp">Reserva</a></li>
                                         <li><a href="relatorio.jsp">Relatórios</a></li>
@@ -99,11 +99,6 @@
 
                                 <form>
                                     <ul class="form-style-1">
-                                        <li>
-                                            <label>Tipo De Cadastro </label>
-                                            <input type="email" required name="nome" class="field-long" readonly="" placeholder="FUNCIONARIO"/>
-
-                                        </li>
                                         <li>
                                             <label>Nome Completo <span class="required">*</span></label>
                                             <input type="email" required name="nome" class="field-long" onblur="valida_campo_nome()" onKeypress="return valida_letras(event)" placeholder="Digite seu Nome Completo"/>

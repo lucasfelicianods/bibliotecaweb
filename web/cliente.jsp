@@ -55,9 +55,9 @@
                                     <ul class="sf-menu">
 
                                         <li class="current"><a href="index.jsp">Home</a></li>
-                                        <li><a href="cadastrarItem.jsp">Cadastrar Acervo</a></li>
-                                        <li><a href="cadastrase.jsp">Cadastra-se</a></li>
-                                        <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+                                        <li><a href="cadastrarItem.jsp">Cadastrar Item</a></li>
+                                        <li><a href="cliente.jsp">Cliente</a></li>
+                                        <li><a href="funcionario.jsp">Funcionario</a></li>
                                         <li><a href="emprestimo.jsp">Emprestimo</a></li>
                                         <li><a href="reserva.jsp">Reserva</a></li>
                                         <li><a href="relatorio.jsp">Relatórios</a></li>
@@ -120,7 +120,7 @@
                                         <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu rg"/>
                                         </li>
                                         <li>
-                                            <label>Data Cadastro <span class="required">*</span></label>
+                                            <label>dataCadastro <span class="required">*</span></label>
                                             <input type="email" required name="dataCadastro" class="field-long" onblur="verifica_campo_dataNascimento()" onkeyup="mascaraData(this)" placeholder="Informe a data do cadastro"/>
                                         </li>
                                         <li>

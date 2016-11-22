@@ -57,9 +57,9 @@
             <nav>
               <ul class="sf-menu">
                <li class="current"><a href="index.jsp">Home</a></li>
-               <li><a href="cadastrarItem.jsp">Cadastro de Acervo</a></li>
-               <li><a href="cadastrase.jsp">Cadastra-se</a></li>
-               <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+               <li><a href="cadastrarItem.jsp">Cadastrar Item</a></li>
+               <li><a href="cliente.jsp">Cliente</a></li>
+               <li><a href="funcionario.jsp">Funcionario</a></li>
                <li><a href="emprestimo.jsp">Emprestimo</a></li>
                <li><a href="reserva.jsp">Reserva</a></li>
                <li><a href="relatorio.jsp">Relatórios</a></li>
@@ -87,7 +87,7 @@
             <div class="fa fa-cog"></div>Emprestimos</div>
           </a>
           <a href="reserva.jsp" class="banner "><div class="maxheight1">
-            <div class="fa fa-briefcase"></div>Reservas</div>
+            <div class="fa fa-briefcase"></div>Rservas</div>
           </a>
         </div>
         <div class="grid_5">

@@ -56,13 +56,13 @@
               <ul class="sf-menu">
             
                <li class="current"><a href="index.jsp">Home</a></li>
-               <li><a href="cadastrarItem.jsp">Cadastrar Acervo</a></li>
-                <li><a href="cadastrase.jsp">Cadastra-se</a></li>
-                <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+               <li><a href="cadastrarItem.jsp">Cadastrar Item</a></li>
+               <li><a href="cliente.jsp">Cliente</a></li>
+               <li><a href="funcionario.jsp">Funcionario</a></li>
                <li><a href="emprestimo.jsp">Emprestimo</a></li>
                <li><a href="reserva.jsp">Reserva</a></li>
                <li><a href="relatorio.jsp">Relatórios</a></li>
-               <li><a href="localizacao.jsp">Localização</a></li>
+               <li><a href="localizacao.jsp">Lozalização</a></li>
              </ul>
             </nav>
             <div class="clear"></div>
@@ -113,14 +113,6 @@
         <li>
         <label>Data Real Da Devolução <span class="required">*</span></label>
         <input type="email" name="dataRealDaDevolucao" class="field-long" />
-    </li>
-        <li>
-        <label>Item</label>
-        <select name="field4" class="field-select">
-        <option value="Advertise">Livro book</option>
-        <option value="Partnership">Revista aparecida</option>
-        <option value="General Question">Artigo de monagrafia</option>
-        </select>
     </li>
     <li>
         <label>Nome Da Pessoa</label>
