@@ -51,6 +51,7 @@ public class AlunoDao {
         }
     }
 
+    
     public void deleteAluno(int codigo) {
         try {
             PreparedStatement preparedStatement = connection
