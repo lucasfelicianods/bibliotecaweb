@@ -1,7 +1,7 @@
 package br.com.bibliotecaweb.bll;
 
 
-import br.com.bibliotecaweb.dal.PersistenciaAluno;
+import br.com.bibliotecaweb.dal.AlunoDao;
 import br.com.bibliotecaweb.model.Pessoa;
 import java.io.IOException;
 import java.text.ParseException;
@@ -29,11 +29,12 @@ public class ControladorAluno extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/cliente.jsp";
     private static String LIST_CLIENTE = "/showCliente.jsp";
-    private PersistenciaAluno dao;
+    private AlunoDao alunoDao;
+    private PersistenciaPessoa daoPessoa;
 
     public ControladorAluno() throws SQLException{
         super();
-        dao = new PersistenciaAluno();
+        daoAluno = new AlunoDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,23 +43,23 @@ public class ControladorAluno extends HttpServlet {
 
         if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("codigo"));
-            dao.deleteAluno(id);
+            daoAluno.deleteAluno(id);
             forward = LIST_CLIENTE;
-            request.setAttribute("cliente", dao.getTodosAlunos());
+            request.setAttribute("cliente", daoAluno.getTodosAlunos());
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             int id = Integer.parseInt(request.getParameter("id"));
-            Pessoa pessoas = dao.getClienteById(id);
-            request.setAttribute("lucas", pessoas);
+            Pessoa pessoa = daoAluno.getClienteById(id);
+            request.setAttribute("lucas", pessoa);
         } else if (action.equalsIgnoreCase("showCliente")) {
             forward = LIST_CLIENTE;
             
-            List<Pessoa> todosClientes = dao.getTodosAlunos();
+            List<Pessoa> todosClientes = daoAluno.getTodosAlunos();
             for(Pessoa c: todosClientes){
                 System.out.println("lucas:" + c.getNome());
             }
             
-            request.setAttribute("cliente", dao.getTodosAlunos());
+            request.setAttribute("cliente", daoAluno.getTodosAlunos());
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -69,6 +70,7 @@ public class ControladorAluno extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        Pessoa pessoas = new Pessoa();
+       
        pessoas.setCpf(request.getParameter("cpf")); 
        pessoas.setNome(request.getParameter("nome"));
        pessoas.setRg(request.getParameter("rg"));
@@ -97,13 +99,14 @@ public class ControladorAluno extends HttpServlet {
 
         String codigo = request.getParameter("codigo");
         if (codigo == null || codigo.isEmpty()) {
-            dao.addAluno(pessoas);
+            
+            daoAluno.incluirPessoaAluno(pessoas);
         } else {
             pessoas.setCodigo(Integer.parseInt(codigo));
-            dao.updateAlunos(pessoas);
+            daoAluno.updateAlunos(pessoas);
         }
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);
-        request.setAttribute("cliente", dao.getTodosAlunos());
+        request.setAttribute("cliente", daoAluno.getTodosAlunos());
         view.forward(request, response);
     }
 }

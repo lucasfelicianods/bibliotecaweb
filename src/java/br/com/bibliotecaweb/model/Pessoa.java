@@ -22,6 +22,12 @@ public class Pessoa {
     private String complementacao;
     private String cidade;
     private String estado;
+    
+    //att
+    private Aluno aluno;
+    private Professor professor;
+    private Funcionario funcionario;
+    
 
     
     //metodos da classe 
@@ -151,6 +157,48 @@ public class Pessoa {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    /**
+     * @return the aluno
+     */
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    /**
+     * @param aluno the aluno to set
+     */
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    /**
+     * @return the professor
+     */
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    /**
+     * @param professor the professor to set
+     */
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    /**
+     * @return the funcionario
+     */
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    /**
+     * @param funcionario the funcionario to set
+     */
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
     

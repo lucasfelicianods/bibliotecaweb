@@ -160,6 +160,14 @@
                                             <label>Estado <span class="required">*</span></label>
                                             <input type="text" required name="estado" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/>
                                         </li>
+                                         <li>
+                                            <label>Matricula <span class="required">*</span></label>
+                                            <input type="text" required name="matricula" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/>
+                                        </li>
+                                         <li>
+                                            <label>Curso <span class="required">*</span></label>
+                                            <input type="text" required name="curso" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/>
+                                        </li>
                                            <li>
                                             <label>Login <span class="required">*</span></label>
                                             <input type="text" required name="login" class="field-long" placeholder="Digite seu Login" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/>
