@@ -2,6 +2,8 @@ package br.com.bibliotecaweb.bll;
 
 
 import br.com.bibliotecaweb.dal.AlunoDao;
+import br.com.bibliotecaweb.dal.PessoaDao;
+import br.com.bibliotecaweb.model.Aluno;
 import br.com.bibliotecaweb.model.Pessoa;
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,17 +26,18 @@ import javax.servlet.annotation.WebServlet;
 
 
 @WebServlet("/ControladorAluno")
-public class ControladorAluno extends HttpServlet {
+public class ServletAluno extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/cliente.jsp";
     private static String LIST_CLIENTE = "/showCliente.jsp";
     private AlunoDao alunoDao;
-    private PersistenciaPessoa daoPessoa;
+    private PessoaDao pessoaDao;
 
-    public ControladorAluno() throws SQLException{
+    public ServletAluno() throws SQLException{
         super();
-        daoAluno = new AlunoDao();
+        alunoDao = new AlunoDao();
+        pessoaDao = new PessoaDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,23 +46,23 @@ public class ControladorAluno extends HttpServlet {
 
         if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("codigo"));
-            daoAluno.deleteAluno(id);
+           alunoDao.deleteAluno(id);
             forward = LIST_CLIENTE;
-            request.setAttribute("cliente", daoAluno.getTodosAlunos());
+            request.setAttribute("cliente", alunoDao.getTodosAlunos());
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             int id = Integer.parseInt(request.getParameter("id"));
-            Pessoa pessoa = daoAluno.getClienteById(id);
+            Aluno pessoa = alunoDao.consultaPorCodigo(id);
             request.setAttribute("lucas", pessoa);
         } else if (action.equalsIgnoreCase("showCliente")) {
             forward = LIST_CLIENTE;
             
-            List<Pessoa> todosClientes = daoAluno.getTodosAlunos();
+            List<Pessoa> todosClientes = alunoDao.getTodosAlunos();
             for(Pessoa c: todosClientes){
                 System.out.println("lucas:" + c.getNome());
             }
             
-            request.setAttribute("cliente", daoAluno.getTodosAlunos());
+            request.setAttribute("cliente", alunoDao.getTodosAlunos());
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -69,44 +72,48 @@ public class ControladorAluno extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       Pessoa pessoas = new Pessoa();
-       
-       pessoas.setCpf(request.getParameter("cpf")); 
-       pessoas.setNome(request.getParameter("nome"));
-       pessoas.setRg(request.getParameter("rg"));
-       
+         
+        Aluno aluno = new Aluno();
+        aluno.setMatricula(request.getParameter("matricula"));
+        aluno.setCurso(request.getParameter("curso"));
+        String codigo = request.getParameter("codigo");
         
+        
+        Pessoa pessoa = new Pessoa();
+      
+       pessoa.setCpf(request.getParameter("cpf")); 
+       pessoa.setNome(request.getParameter("nome"));
+       pessoa.setRg(request.getParameter("rg"));
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            pessoas.setDataCadastro((java.sql.Date) sdf.parse(request.getParameter("datacadastro")));
+            pessoa.setDataCadastro((java.sql.Date) sdf.parse(request.getParameter("datacadastro")));
         } catch (ParseException ex) {
             System.out.println("Erro ao converter a data: \n" 
                     + ex.getMessage());
-            Logger.getLogger(ControladorAluno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServletAluno.class.getName()).log(Level.SEVERE, null, ex);
         }
-        pessoas.setTelefoneResidecial(request.getParameter("telefoneresidecial"));
-        pessoas.setTelefoneCelular(request.getParameter("telefonecelular"));
-        pessoas.setTelefoneComercial(request.getParameter("telefonecomercial"));
-        pessoas.setLogin(request.getParameter("login"));
-        pessoas.setSenha(request.getParameter("senha"));
-        pessoas.setRua(request.getParameter("rua"));
-        pessoas.setBairro(request.getParameter("bairro"));
-        pessoas.setComplementacao(request.getParameter("complemento"));
-        pessoas.setCidade(request.getParameter("cidade"));
-        pessoas.setEstado(request.getParameter("estado"));
-        
-        
-
-        String codigo = request.getParameter("codigo");
+        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidecial"));
+        pessoa.setTelefoneCelular(request.getParameter("telefonecelular"));
+        pessoa.setTelefoneComercial(request.getParameter("telefonecomercial"));
+        pessoa.setLogin(request.getParameter("login"));
+        pessoa.setSenha(request.getParameter("senha"));
+        pessoa.setRua(request.getParameter("rua"));
+        pessoa.setBairro(request.getParameter("bairro"));
+        pessoa.setComplementacao(request.getParameter("complemento"));
+        pessoa.setCidade(request.getParameter("cidade"));
+        pessoa.setEstado(request.getParameter("estado"));
+     
+     
         if (codigo == null || codigo.isEmpty()) {
-            
-            daoAluno.incluirPessoaAluno(pessoas);
+         alunoDao.incluirAluno(aluno);
+         pessoaDao.incluirPessoa(pessoa);
+         
         } else {
-            pessoas.setCodigo(Integer.parseInt(codigo));
-            daoAluno.updateAlunos(pessoas);
+            pessoa.setCodigo(Integer.parseInt(codigo));
+            alunoDao.updateAlunos(pessoa);
         }
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);
-        request.setAttribute("cliente", daoAluno.getTodosAlunos());
+        request.setAttribute("cliente", alunoDao.getTodosAlunos());
         view.forward(request, response);
     }
 }

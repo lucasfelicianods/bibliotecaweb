@@ -96,7 +96,8 @@
                         <div class="grid_4">
                             <div class="block-3">
 
-                                <form>
+                                 
+                                <form method="POST" action='ServletAluno' name="PessoaAluno">
                                     <ul class="form-style-1">
 
                                         <li>
@@ -184,8 +185,7 @@
                                             <input type="submit" value="Limpar" />
                                         </li>
                                     </ul>
-                                </form>
-
+                                    </form>
                             </div>
                         </div>
                         <div class="grid_4">
