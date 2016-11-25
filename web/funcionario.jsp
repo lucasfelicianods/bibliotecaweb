@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if(session.getAttribute("login") != null) {
+        // verificando se tem um atributo login na sessao
+    // se tiver vai continuar e mostrar o menu
+    if (session.getAttribute("login") != null) {
 %>
 <html lang="en">
     <head>
@@ -112,62 +112,84 @@
 
                                         </li>
                                         <li>
-                                            <label>Nome Completo <span class="required">*</span></label>
-                                            <input type="email" required name="nome" class="field-long" onblur="valida_campo_nome()" onKeypress="return valida_letras(event)" placeholder="Digite seu Nome Completo"/>
+                                        <label>Nome Completo <span class="required">*</span></label>
+                                        <input type="text" required name="nome" class="field-long" onblur="valida_campo_nome()" onKeypress="return valida_letras(event)" placeholder="Digite seu Nome Completo" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"   />
 
                                         </li>
                                         <li>
                                             <label>Email <span class="required">*</span></label>
-                                            <input type="email" required name="email" class="field-long" placeholder="Digite seu e-mail" />
+                                            <input type="email" required name="email" class="field-long" placeholder="Digite seu e-mail" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'" />
 
                                         </li>
+                                        <li>
 
-                                        <label>Cpf <span class="required">*</span></label>
-                                        <input type="email" required name="cpf" class="field-long" onkeypress="return SomenteNumeros(event)" placeholder="Digite seu cpf" onblur="return verificarCPF(this.value)"/>
+                                            <label>Cpf <span class="required">*</span></label>
+                                            <input type="text" required name="cpf" class="field-long"  onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu cpf" onblur="return verificarCPF(this.value)" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
+                                        </li>
+
+                                        <li>
+                                            <label>Rg <span class="required">*</span></label>    
+                                            <input type="text" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)"  placeholder="Digite seu rg" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
-                                            <label>rg <span class="required">*</span></label>
-                                            <input type="email" required name="rg" class="field-long" onkeypress="return SomenteNumeros(event)" placeholder="Digite seu rg"/>
-                                        </li>
-                                        <li>
-                                            <label>dataCadastro <span class="required">*</span></label>
-                                            <input type="email" required name="dataCadastro" class="field-long" placeholder="Informe a data do cadastro"/>
+                                            <label>Data Cadastro <span class="required">*</span></label>
+                                            <input type="text" required name="datacadastro" class="field-long" onblur="verifica_campo_dataNascimento()" onkeyup="mascaraData(this)" placeholder="Informe a data do cadastro" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Telefone Residencial <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneResidencial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
+                                            <input type="text" required name="telefoneresidencial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Telefone Celular <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneCelular" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
+                                            <input type="text" required name="telefonecelular" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Telefone Comercial <span class="required">*</span></label>
-                                            <input type="email" required name="TelefoneComercial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999"/>
+                                            <input type="text" required name="telefonecomercial" class="field-long" onkeypress="return SomenteNumeros(event)" onkeyup="mascaraTelefone(this)"  placeholder="(99)9999-9999" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Rua <span class="required">*</span></label>
-                                            <input type="email" required name="Rua" class="field-long" placeholder="Digite seu Rua"/>
+                                            <input type="text" required name="rua" class="field-long" placeholder="Digite seu Rua" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Bairro <span class="required">*</span></label>
-                                            <input type="email" required name="Bairro" class="field-long" placeholder="Digite seu Bairro"/>
+                                            <input type="text" required name="bairro" class="field-long" placeholder="Digite seu Bairro" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Complemento <span class="required">*</span></label>
-                                            <input type="email" required name="Complemento" class="field-long" placeholder="Digite seu Complemento"/>
+                                            <input type="text" required name="complemento" class="field-long" placeholder="Digite seu Complemento" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Cidade <span class="required">*</span></label>
-                                            <input type="email" required name="Cidade" class="field-long" placeholder="Digite sua Cidade"/>
+                                            <input type="text" required name="cidade" class="field-long" placeholder="Digite sua Cidade" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Estado <span class="required">*</span></label>
-                                            <input type="email" required name="Estado" class="field-long" placeholder="Digite seu Estado"/>
+                                            <input type="text" required name="estado" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
-                                            <input type="submit" value="Cadastrar" />
-                                            <input type="submit" value="Limpar" />
+                                            <label>Cargo <span class="required">*</span></label>
+                                            <input type="text" required name="cargo" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
+                                        </li>
+                                        <li>
+                                            <label>Salario <span class="required">*</span></label>
+                                            <input type="text" required name="salario" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
+                                        </li>
+                                        <li>
+                                            <label>Administrador</label>
+                                            <input type="checkbox" name="option1" value="Milk"> Sim
+                                        </li>
+
+                                        <li>
+                                            <label>Login <span class="required">*</span></label>
+                                            <input type="text" required name="login" class="field-long" placeholder="Digite seu Login" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
+                                        </li>
+                                        <li>
+                                            <label>Senha <span class="required">*</span></label>
+                                            <input type="password" required name="senha" class="field-long" placeholder="Digite sua Senha" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
+                                        </li>
+                                        <input type="submit" value="Cadastrar" />
+                                        <input type="submit" value="Limpar" />
                                         </li>
                                     </ul>
                                 </form>
@@ -202,11 +224,11 @@
     </body>
 </html>
 <%
-	// se não existir um login na sessao, 
-	// vai enviar para a página de login novamente
-	} else {
+        // se não existir um login na sessao, 
+    // vai enviar para a página de login novamente
+} else {
 %>
-	<jsp:forward page="login.jsp"></jsp:forward>
+<jsp:forward page="login.jsp"></jsp:forward>
 <%
-}
+    }
 %>

@@ -229,7 +229,7 @@
 	// vai enviar para a página de login novamente
 	} else {
 %>
-	<jsp:forward page="login.jsp"></jsp:forward>
+	<jsp:forward page="index.jsp"></jsp:forward>
 <%
 }
 %>
