@@ -29,12 +29,26 @@ public class PessoaDao {
             PreparedStatement preparedStatement = connection
                     .prepareStatement(
                             
-                            "insert into pessoa"
-                            + "(nome, rg, email,datacadastro,telefonecelular,telefoneresidencial,telefonecomercial,rua,complemento,bairro,estado,cidade,codigo_aluno,cpf,login,senha) "
-                            + "values "
-                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                            
-                    
+                            "insert into pessoa("
+                                    + "nome, "
+                                    + "rg, "
+                                    + "email,"
+                                    + "datacadastro,"
+                                    + "telefonecelular,"
+                                    + "telefoneresidencial,"
+                                    + "telefonecomercial,"
+                                    + "rua,"
+                                    + "complemento,"
+                                    + "bairro,"
+                                    + "estado,"
+                                    + "cidade,"
+                                    + "codigo_aluno,"
+                                    + "cpf,"
+                                    + "login,"
+                                    + "senha) "
+                                    + "values "
+                                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                               
             // Parameters start with 1
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getRg());
@@ -48,9 +62,9 @@ public class PessoaDao {
             preparedStatement.setString(10, pessoa.getBairro());
             preparedStatement.setString(11, pessoa.getEstado());
             preparedStatement.setString(12, pessoa.getCidade());
-            preparedStatement.setInt(13, pessoa.getAluno().getCodigo());
-            preparedStatement.setInt(13, pessoa.getFuncionario().getCodigo());
-            preparedStatement.setInt(13, pessoa.getProfessor().getCodigo());
+            if(pessoa.getAluno().getCodigo() > 0) preparedStatement.setInt(13, pessoa.getAluno().getCodigo());
+           // if(pessoa.getFuncionario().getCodigo() > 0) preparedStatement.setInt(14, pessoa.getFuncionario().getCodigo());
+          //  if(pessoa.getProfessor().getCodigo() > 0) preparedStatement.setInt(15, pessoa.getProfessor().getCodigo());
             preparedStatement.setString(14, pessoa.getCpf());
             preparedStatement.setString(15, pessoa.getLogin());
             preparedStatement.setString(16, pessoa.getSenha());

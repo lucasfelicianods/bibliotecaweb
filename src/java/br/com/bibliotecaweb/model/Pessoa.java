@@ -1,7 +1,7 @@
 
 package br.com.bibliotecaweb.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Pessoa {
     
@@ -24,9 +24,9 @@ public class Pessoa {
     private String estado;
     
     //att
-    private Aluno aluno;
-    private Professor professor;
-    private Funcionario funcionario;
+    private Aluno aluno = new Aluno();
+    private Professor professor = new Professor();
+    private Funcionario funcionario = new Funcionario();
     
 
     

@@ -35,20 +35,25 @@ public class AlunoDao {
         //---------- DAO ALUNO ---------------------//
     
 
-    public void incluirAluno(Aluno aluno) {
+    public Aluno incluirAluno(Aluno aluno) {
        
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into aluno"
-                            + "(matricula,curso)"
-                            + "values)");
+                    .prepareStatement("insert into aluno("
+                            + "matricula,"
+                            + "curso)"
+                            + "values"
+                            + "( ?, ?)");
+            
             preparedStatement.setString(1, aluno.getMatricula());
             preparedStatement.setString(2, aluno.getCurso());
             preparedStatement.executeUpdate();
-
+            
+            return consultarPorMatricula(aluno.getMatricula());
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     
@@ -138,6 +143,27 @@ public class AlunoDao {
                 aluno.setCurso("matricula");
                   
           
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return aluno;
+    }
+
+    public Aluno consultarPorMatricula(String matricula) {
+        Aluno aluno = new Aluno();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from aluno where matricula=?");
+            preparedStatement.setString(1, matricula);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                aluno.setCodigo(rs.getInt("codigo"));
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setCurso(rs.getString("curso"));
 
             }
         } catch (SQLException e) {

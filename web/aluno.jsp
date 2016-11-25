@@ -97,12 +97,12 @@
                             <div class="block-3">
 
                                  
-                                <form method="POST" action='ServletAluno' name="PessoaAluno">
+                                <form method="POST" action="ServletAluno" name="PessoaAluno">
                                     <ul class="form-style-1">
 
                                         <li>
                                             <label>Tipo De Cadastro </label>
-                                            <input type="email" required name="nome" class="field-long" readonly="" placeholder="ALUNO"/>
+                                            <input type="text" required name="tipocadastro" class="field-long" readonly="" placeholder="ALUNO"/>
 
                                         </li>
                                         <li>

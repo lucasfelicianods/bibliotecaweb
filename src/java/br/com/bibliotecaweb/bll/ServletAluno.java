@@ -8,7 +8,6 @@ import br.com.bibliotecaweb.model.Pessoa;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,12 +24,12 @@ import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/ControladorAluno")
+@WebServlet("/ServletAluno")
 public class ServletAluno extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/cliente.jsp";
-    private static String LIST_CLIENTE = "/showCliente.jsp";
+    private static String INSERT_OR_EDIT = "/aluno.jsp";
+    private static String LIST_CLIENTE = "/index.jsp";
     private AlunoDao alunoDao;
     private PessoaDao pessoaDao;
 
@@ -80,18 +79,17 @@ public class ServletAluno extends HttpServlet {
         
         
         Pessoa pessoa = new Pessoa();
-      
-       pessoa.setCpf(request.getParameter("cpf")); 
-       pessoa.setNome(request.getParameter("nome"));
-       pessoa.setRg(request.getParameter("rg"));
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            pessoa.setDataCadastro((java.sql.Date) sdf.parse(request.getParameter("datacadastro")));
-        } catch (ParseException ex) {
-            System.out.println("Erro ao converter a data: \n" 
-                    + ex.getMessage());
-            Logger.getLogger(ServletAluno.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        pessoa.setCpf(request.getParameter("cpf"));
+        pessoa.setNome(request.getParameter("nome"));
+        pessoa.setRg(request.getParameter("rg"));
+   try {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                pessoa.setDataCadastro(sdf.parse(request.getParameter("datacadastro")));
+            } catch (ParseException ex) {
+                System.out.println("Erro de conversão da data: "
+                        + "\nMessage: " + ex.getMessage());
+            }
         pessoa.setTelefoneResidecial(request.getParameter("telefoneresidecial"));
         pessoa.setTelefoneCelular(request.getParameter("telefonecelular"));
         pessoa.setTelefoneComercial(request.getParameter("telefonecomercial"));
@@ -102,18 +100,20 @@ public class ServletAluno extends HttpServlet {
         pessoa.setComplementacao(request.getParameter("complemento"));
         pessoa.setCidade(request.getParameter("cidade"));
         pessoa.setEstado(request.getParameter("estado"));
-     
-     
+        
+        
         if (codigo == null || codigo.isEmpty()) {
-         alunoDao.incluirAluno(aluno);
-         pessoaDao.incluirPessoa(pessoa);
-         
+            alunoDao.incluirAluno(aluno);
+            pessoa.setAluno(alunoDao.consultarPorMatricula(aluno.getMatricula()));
+            pessoaDao.incluirPessoa(pessoa);
+            
         } else {
             pessoa.setCodigo(Integer.parseInt(codigo));
             alunoDao.updateAlunos(pessoa);
         }
+//       pessoaDao.incluirPessoa(pessoa);
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);
-        request.setAttribute("cliente", alunoDao.getTodosAlunos());
+        //request.setAttribute("cliente", alunoDao.getTodosAlunos());
         view.forward(request, response);
     }
 }
