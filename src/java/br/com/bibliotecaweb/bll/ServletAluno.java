@@ -83,6 +83,7 @@ public class ServletAluno extends HttpServlet {
         pessoa.setCpf(request.getParameter("cpf"));
         pessoa.setNome(request.getParameter("nome"));
         pessoa.setRg(request.getParameter("rg"));
+        pessoa.setEmail(request.getParameter("email"));
    try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 pessoa.setDataCadastro(sdf.parse(request.getParameter("datacadastro")));
@@ -90,7 +91,7 @@ public class ServletAluno extends HttpServlet {
                 System.out.println("Erro de conversão da data: "
                         + "\nMessage: " + ex.getMessage());
             }
-        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidecial"));
+        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidencial"));
         pessoa.setTelefoneCelular(request.getParameter("telefonecelular"));
         pessoa.setTelefoneComercial(request.getParameter("telefonecomercial"));
         pessoa.setLogin(request.getParameter("login"));
