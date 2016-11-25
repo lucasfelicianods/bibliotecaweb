@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<%
+	// verificando se tem um atributo login na sessao
+	// se tiver vai continuar e mostrar o menu
+	if(session.getAttribute("login") != null) {
+%>
 <html lang="en">
     <head>
         <title>Cadastro de Aluno</title>
@@ -62,6 +68,8 @@
                                         <li><a href="reserva.jsp">Reserva</a></li>
                                         <li><a href="relatorio.jsp">Relatórios</a></li>
                                         <li><a href="localizacao.jsp">Localização</a></li>
+                                        <li><a href="login.jsp">Entrar</a></li>
+                                        <li><a href="ServletLogin?acao=logout">Sair</a></li>
                                     </ul>
                                 </nav>
                                 <div class="clear"></div>
@@ -215,3 +223,13 @@
         <a href="#" id="toTop" class="fa fa-chevron-up"></a>
     </body>
 </html>
+
+<%
+	// se não existir um login na sessao, 
+	// vai enviar para a página de login novamente
+	} else {
+%>
+	<jsp:forward page="login.jsp"></jsp:forward>
+<%
+}
+%>
