@@ -29,7 +29,7 @@ public class ServletAluno extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/aluno.jsp";
-    private static String LIST_CLIENTE = "/index.jsp";
+    private static String LIST_CLIENTE = "/login.jsp";
     private AlunoDao alunoDao;
     private PessoaDao pessoaDao;
 
