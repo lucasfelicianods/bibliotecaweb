@@ -66,8 +66,8 @@
                                         <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
                                         <li><a href="emprestimo.jsp">Emprestimo</a></li>
                                         <li><a href="reserva.jsp">Reserva</a></li>
-                                        <li><a href="relatorio.jsp">RelatÛrios</a></li>
-                                        <li><a href="localizacao.jsp">LocalizaÁ„o</a></li>
+                                        <li><a href="relatorio.jsp">Relat√≥rios</a></li>
+                                        <li><a href="localizacao.jsp">Localiza√ß√£o</a></li>
                                         <li><a href="login.jsp">Entrar</a></li>
                                         <li><a href="ServletLogin?acao=logout">Sair</a></li>
                                     </ul>
@@ -89,7 +89,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRO DE FUNCION¡RIO</marquee>
+                            <marquee>CADASTRO DE FUNCION√ÅRIO</marquee>
                         </h3>
                     </div>
 
@@ -177,7 +177,7 @@
                                         </li>
                                         <li>
                                             <label>Administrador</label>
-                                            <input type="checkbox" name="option1" value="Milk"> Sim
+                                            <input type="checkbox" name="administrador" value="Milk"> Sim
                                         </li>
 
                                         <li>
@@ -207,7 +207,7 @@
             </div>
         </section>
         <!--==============================
-                      roda pÈ
+                      roda p√©
         =================================-->
         <footer id="footer">
             <div class="container">
@@ -224,8 +224,8 @@
     </body>
 </html>
 <%
-        // se n„o existir um login na sessao, 
-    // vai enviar para a p·gina de login novamente
+        // se n√£o existir um login na sessao, 
+    // vai enviar para a p√°gina de login novamente
 } else {
 %>
 <jsp:forward page="login.jsp"></jsp:forward>
