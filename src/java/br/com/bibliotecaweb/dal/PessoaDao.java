@@ -44,11 +44,13 @@ public class PessoaDao {
                                     + "estado,"
                                     + "cidade,"
                                     + "codigo_aluno,"
+                                    + "codigo_funcionario,"
+                                    + "codigo_professor,"
                                     + "cpf,"
                                     + "login,"
                                     + "senha) "
                                     + "values "
-                                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
                                                
             // Parameters start with 1
             preparedStatement.setString(1, pessoa.getNome());
@@ -63,12 +65,24 @@ public class PessoaDao {
             preparedStatement.setString(10, pessoa.getBairro());
             preparedStatement.setString(11, pessoa.getEstado());
             preparedStatement.setString(12, pessoa.getCidade());
-            if(pessoa.getAluno().getCodigo() > 0) preparedStatement.setInt(13, pessoa.getAluno().getCodigo());
-           // if(pessoa.getFuncionario().getCodigo() > 0) preparedStatement.setInt(14, pessoa.getFuncionario().getCodigo());
-          //  if(pessoa.getProfessor().getCodigo() > 0) preparedStatement.setInt(15, pessoa.getProfessor().getCodigo());
-            preparedStatement.setString(14, pessoa.getCpf());
-            preparedStatement.setString(15, pessoa.getLogin());
-            preparedStatement.setString(16, pessoa.getSenha());
+            if(pessoa.getAluno().getCodigo() != null) {
+                preparedStatement.setInt(13, pessoa.getAluno().getCodigo());
+            } else {
+                preparedStatement.setNull(13,  java.sql.Types.INTEGER);
+            }
+            if (pessoa.getFuncionario().getCodigo()!= null) {
+                preparedStatement.setInt(14, pessoa.getFuncionario().getCodigo());
+            } else {
+                preparedStatement.setNull(14,  java.sql.Types.INTEGER);
+            }
+            if(pessoa.getProfessor().getCodigo() != null) {
+                preparedStatement.setInt(15, pessoa.getProfessor().getCodigo());
+            } else {
+                preparedStatement.setNull(15,  java.sql.Types.INTEGER);
+            }
+            preparedStatement.setString(16, pessoa.getCpf());
+            preparedStatement.setString(17, pessoa.getLogin());
+            preparedStatement.setString(18, pessoa.getSenha());
         
             preparedStatement.executeUpdate();
 

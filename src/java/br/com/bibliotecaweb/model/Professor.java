@@ -11,16 +11,16 @@ package br.com.bibliotecaweb.model;
  */
 public class Professor {
     
-    private int codigo;
+    private Integer codigo;
     private String materia;
     private String titulacao;
     private Pessoa pessoa;
 
-    public int getCodigo() {
-        return codigo;
+    public Integer getCodigo() {
+       return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 

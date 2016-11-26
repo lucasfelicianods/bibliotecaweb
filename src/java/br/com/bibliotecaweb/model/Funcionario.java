@@ -11,17 +11,17 @@ package br.com.bibliotecaweb.model;
  */
 public class Funcionario {
     
-    private int codigo;
+    private Integer codigo;
     private String cargo;
     private float salario;
     private boolean administrador;
     private Pessoa pessoa;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 

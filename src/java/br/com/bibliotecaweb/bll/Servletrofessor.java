@@ -24,8 +24,8 @@ import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/ServletAluno")
-public class ServletAluno extends HttpServlet {
+@WebServlet("/ServletProfessor")
+public class Servletrofessor extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/aluno.jsp";
@@ -33,7 +33,7 @@ public class ServletAluno extends HttpServlet {
     private AlunoDao alunoDao;
     private PessoaDao pessoaDao;
 
-    public ServletAluno() throws SQLException{
+    public Servletrofessor() throws SQLException{
         super();
         alunoDao = new AlunoDao();
         pessoaDao = new PessoaDao();
@@ -83,7 +83,6 @@ public class ServletAluno extends HttpServlet {
         pessoa.setCpf(request.getParameter("cpf"));
         pessoa.setNome(request.getParameter("nome"));
         pessoa.setRg(request.getParameter("rg"));
-        pessoa.setEmail(request.getParameter("email"));
    try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 pessoa.setDataCadastro(sdf.parse(request.getParameter("datacadastro")));
@@ -91,7 +90,7 @@ public class ServletAluno extends HttpServlet {
                 System.out.println("Erro de conversão da data: "
                         + "\nMessage: " + ex.getMessage());
             }
-        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidencial"));
+        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidecial"));
         pessoa.setTelefoneCelular(request.getParameter("telefonecelular"));
         pessoa.setTelefoneComercial(request.getParameter("telefonecomercial"));
         pessoa.setLogin(request.getParameter("login"));
@@ -104,8 +103,8 @@ public class ServletAluno extends HttpServlet {
         
         
         if (codigo == null || codigo.isEmpty()) {
-            Aluno alunoIncluido = alunoDao.incluirAluno(aluno);
-            pessoa.setAluno(alunoIncluido);
+            alunoDao.incluirAluno(aluno);
+            pessoa.setAluno(alunoDao.consultarPorMatricula(aluno.getMatricula()));
             pessoaDao.incluirPessoa(pessoa);
             
         } else {
