@@ -108,6 +108,7 @@ public class AlunoDao {
                 pessoas.setCpf(rs.getString("cpf"));
                 pessoas.setNome(rs.getString("nome"));
                 pessoas.setRg(rs.getString("rg"));
+                pessoas.setRg(rs.getString("email"));
                 pessoas.setDataCadastro(rs.getDate("datacadastro"));
                 pessoas.setTelefoneResidecial(rs.getString("teleforesidencial"));
                 pessoas.setTelefoneCelular(rs.getString("telefocelular"));

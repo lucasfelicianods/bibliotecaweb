@@ -279,7 +279,7 @@ body {
 .card .button-container button span {
   position: relative;
   z-index: 1;
-  color: #ddd;
+  color: blue;
   -webkit-transition: .3s ease;
   transition: .3s ease;
 }
