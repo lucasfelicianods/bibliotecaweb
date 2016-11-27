@@ -103,12 +103,12 @@
                         <div class="grid_4">
                             <div class="block-3">
 
-                                <form>
+                              <form method="POST" action="ServletProfessor" name="PessoaProfessor">
                                     <ul class="form-style-1">
 
                                         <li>
                                             <label>Tipo De Cadastro </label>
-                                            <input type="email" required name="nome" class="field-long" readonly="" placeholder="PROFESSOR"/>
+                                            <input type="text" required name="tipocadastro" class="field-long" readonly="" placeholder="PROFESSOR"/>
 
                                         </li>
                                         <li>
@@ -169,7 +169,7 @@
                                         </li>
                                         <li>
                                             <label>Materia <span class="required">*</span></label>
-                                            <input type="text" required name="matira" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
+                                            <input type="text" required name="materia" class="field-long" placeholder="Digite seu Estado" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'"/>
                                         </li>
                                         <li>
                                             <label>Titulação <span class="required">*</span></label>

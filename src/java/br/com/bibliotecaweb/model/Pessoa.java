@@ -6,7 +6,7 @@ import java.util.Date;
 public class Pessoa {
     
     //Atributos da classe
-    private int codigo;
+    private Integer codigo;
     private String cpf;
     private String nome;
     private String email;
@@ -31,11 +31,11 @@ public class Pessoa {
 
     
     //metodos da classe 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 

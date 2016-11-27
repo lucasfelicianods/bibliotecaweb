@@ -110,7 +110,7 @@
 
                                         <li>
                                             <label>Tipo De Cadastro </label>
-                                            <input type="text" required name="tipocadastro" class="field-long" readonly="" placeholder="ALUNO"/>
+                                            <input type="text" required name="tipocadastro" class="field-long" />
 
                                         </li>
                                         <li>

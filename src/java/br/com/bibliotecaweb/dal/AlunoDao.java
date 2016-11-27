@@ -55,8 +55,31 @@ public class AlunoDao {
         }
         return null;
     }
-
     
+    public Aluno consultarPorMatricula(String matricula) {
+        Aluno aluno = new Aluno();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from aluno where matricula=?");
+            preparedStatement.setString(1, matricula);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                aluno.setCodigo(rs.getInt("codigo"));
+                aluno.setMatricula(rs.getString("matricula"));
+                aluno.setCurso(rs.getString("curso"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return aluno;
+    
+
+    } 
+    
+
     public void deleteAluno(int codigo) {
         try {
             PreparedStatement preparedStatement = connection
@@ -153,25 +176,6 @@ public class AlunoDao {
         return aluno;
     }
 
-    public Aluno consultarPorMatricula(String matricula) {
-        Aluno aluno = new Aluno();
-        try {
-            PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from aluno where matricula=?");
-            preparedStatement.setString(1, matricula);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                aluno.setCodigo(rs.getInt("codigo"));
-                aluno.setMatricula(rs.getString("matricula"));
-                aluno.setCurso(rs.getString("curso"));
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return aluno;
     }
 
-}
+

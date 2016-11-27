@@ -3,8 +3,10 @@ package br.com.bibliotecaweb.bll;
 
 import br.com.bibliotecaweb.dal.AlunoDao;
 import br.com.bibliotecaweb.dal.PessoaDao;
+import br.com.bibliotecaweb.dal.ProfessorDao;
 import br.com.bibliotecaweb.model.Aluno;
 import br.com.bibliotecaweb.model.Pessoa;
+import br.com.bibliotecaweb.model.Professor;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,17 +27,18 @@ import javax.servlet.annotation.WebServlet;
 
 
 @WebServlet("/ServletProfessor")
-public class Servletrofessor extends HttpServlet {
+public class ServletProfessor extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/aluno.jsp";
+    private static String INSERT_OR_EDIT = "/professor.jsp";
     private static String LIST_CLIENTE = "/index.jsp";
-    private AlunoDao alunoDao;
     private PessoaDao pessoaDao;
+    private ProfessorDao professorDao; 
+    
 
-    public Servletrofessor() throws SQLException{
+    public ServletProfessor() throws SQLException{
         super();
-        alunoDao = new AlunoDao();
+        professorDao = new ProfessorDao();
         pessoaDao = new PessoaDao();
     }
 
@@ -45,23 +48,23 @@ public class Servletrofessor extends HttpServlet {
 
         if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("codigo"));
-           alunoDao.deleteAluno(id);
+            professorDao.deleteProfessor(id);
             forward = LIST_CLIENTE;
-            request.setAttribute("cliente", alunoDao.getTodosAlunos());
+            request.setAttribute("cliente", professorDao.getTodosAlunos());
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             int id = Integer.parseInt(request.getParameter("id"));
-            Aluno pessoa = alunoDao.consultaPorCodigo(id);
+            Aluno pessoa = professorDao.consultaPorCodigo(id);
             request.setAttribute("lucas", pessoa);
         } else if (action.equalsIgnoreCase("showCliente")) {
             forward = LIST_CLIENTE;
             
-            List<Pessoa> todosClientes = alunoDao.getTodosAlunos();
+            List<Pessoa> todosClientes = professorDao.getTodosAlunos();
             for(Pessoa c: todosClientes){
                 System.out.println("lucas:" + c.getNome());
             }
             
-            request.setAttribute("cliente", alunoDao.getTodosAlunos());
+            request.setAttribute("cliente", professorDao.getTodosAlunos());
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -71,17 +74,19 @@ public class Servletrofessor extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         
-        Aluno aluno = new Aluno();
-        aluno.setMatricula(request.getParameter("matricula"));
-        aluno.setCurso(request.getParameter("curso"));
+              
+        Professor professor = new Professor();
+        professor.setMateria(request.getParameter("materia"));
+        professor.setTitulacao(request.getParameter("titulacao"));
         String codigo = request.getParameter("codigo");
         
         
-        Pessoa pessoa = new Pessoa();
         
-        pessoa.setCpf(request.getParameter("cpf"));
+        Pessoa pessoa = new Pessoa();
+               
         pessoa.setNome(request.getParameter("nome"));
+        pessoa.setCpf(request.getParameter("cpf"));
+        pessoa.setEmail(request.getParameter("email"));
         pessoa.setRg(request.getParameter("rg"));
    try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -90,7 +95,7 @@ public class Servletrofessor extends HttpServlet {
                 System.out.println("Erro de conversão da data: "
                         + "\nMessage: " + ex.getMessage());
             }
-        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidecial"));
+        pessoa.setTelefoneResidecial(request.getParameter("telefoneresidencial"));
         pessoa.setTelefoneCelular(request.getParameter("telefonecelular"));
         pessoa.setTelefoneComercial(request.getParameter("telefonecomercial"));
         pessoa.setLogin(request.getParameter("login"));
@@ -103,13 +108,21 @@ public class Servletrofessor extends HttpServlet {
         
         
         if (codigo == null || codigo.isEmpty()) {
-            alunoDao.incluirAluno(aluno);
-            pessoa.setAluno(alunoDao.consultarPorMatricula(aluno.getMatricula()));
+            
+            Professor professorIncluido = professorDao.incluirProfessor(professor);
+            pessoa.setProfessor(professorIncluido);
             pessoaDao.incluirPessoa(pessoa);
+            
+            
+            
+            
+            
+            
+            
             
         } else {
             pessoa.setCodigo(Integer.parseInt(codigo));
-            alunoDao.updateAlunos(pessoa);
+            professorDao.updateAlunos(pessoa);
         }
 //       pessoaDao.incluirPessoa(pessoa);
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);

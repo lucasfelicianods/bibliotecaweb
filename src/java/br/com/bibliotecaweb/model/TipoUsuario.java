@@ -1,26 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.bibliotecaweb.model;
 
-/**
- *
- * @author jaire
- */
-public class Usuario {
+public class TipoUsuario {
     
     private int codigo;
-    private String descricao;
+    
     private Pessoa pessoa;
+    
+    private String tipocadastro;
 
-    public int getCodigo() {
-        return codigo;
+    public String getTipocadastro() {
+        return tipocadastro;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setTipocadastro(String tipocadastro) {
+        this.tipocadastro = tipocadastro;
     }
 
     public String getDescricao() {
@@ -30,7 +24,16 @@ public class Usuario {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    private String descricao;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
     public Pessoa getPessoa() {
         return pessoa;
     }

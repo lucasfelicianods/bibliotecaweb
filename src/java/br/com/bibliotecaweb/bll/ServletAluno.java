@@ -3,8 +3,10 @@ package br.com.bibliotecaweb.bll;
 
 import br.com.bibliotecaweb.dal.AlunoDao;
 import br.com.bibliotecaweb.dal.PessoaDao;
+import br.com.bibliotecaweb.dal.TipoUsuarioDao;
 import br.com.bibliotecaweb.model.Aluno;
 import br.com.bibliotecaweb.model.Pessoa;
+import br.com.bibliotecaweb.model.TipoUsuario;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,11 +34,13 @@ public class ServletAluno extends HttpServlet {
     private static String LIST_CLIENTE = "/index.jsp";
     private AlunoDao alunoDao;
     private PessoaDao pessoaDao;
+    private TipoUsuarioDao tipoUsuarioDao; 
 
     public ServletAluno() throws SQLException{
         super();
         alunoDao = new AlunoDao();
         pessoaDao = new PessoaDao();
+        tipoUsuarioDao = new TipoUsuarioDao(); 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -102,11 +106,15 @@ public class ServletAluno extends HttpServlet {
         pessoa.setCidade(request.getParameter("cidade"));
         pessoa.setEstado(request.getParameter("estado"));
         
-        
+        TipoUsuario tipoUsuario =  new TipoUsuario();
+        tipoUsuario.setTipocadastro(request.getParameter("tipocadastro"));
+     
         if (codigo == null || codigo.isEmpty()) {
             Aluno alunoIncluido = alunoDao.incluirAluno(aluno);
             pessoa.setAluno(alunoIncluido);
-            pessoaDao.incluirPessoa(pessoa);
+            Pessoa pessoaIncluida = pessoaDao.incluirPessoa(pessoa);
+            tipoUsuario.setPessoa(pessoaIncluida);
+            tipoUsuarioDao.incluirTipoUsuario(pessoa);
             
         } else {
             pessoa.setCodigo(Integer.parseInt(codigo));

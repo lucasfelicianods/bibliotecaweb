@@ -24,7 +24,7 @@ public class PessoaDao {
     
     
 
-    public void incluirPessoa(Pessoa pessoa) {
+    public Pessoa incluirPessoa(Pessoa pessoa) {
      
         try {
             PreparedStatement preparedStatement = connection
@@ -85,12 +85,34 @@ public class PessoaDao {
             preparedStatement.setString(18, pessoa.getSenha());
         
             preparedStatement.executeUpdate();
+            return consultarPorCpf(pessoa.getCpf());
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+         return null;
     }
     
+     public Pessoa consultarPorCpf(String cpf) {
+ 
+        Pessoa pessoa = new Pessoa();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from pessoa where cpf=?");
+            preparedStatement.setString(1, cpf);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+            pessoa.setCodigo(rs.getInt("codigo"));
+                           
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pessoa;
+    
+
+    } 
 }
 
 //    public void deleteAluno(int codigo_pessoa) {
