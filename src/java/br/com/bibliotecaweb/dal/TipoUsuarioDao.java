@@ -16,7 +16,7 @@ public class TipoUsuarioDao {
         connection = Conexao.getConnection();
     }
 
-        //---------- TIPO USUARIO DAO ---------------------//
+        //------- TIPO USUARIO DAO ------------------//
     
     
 
