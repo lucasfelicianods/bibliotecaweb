@@ -25,7 +25,7 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/ServletAluno")
+@WebServlet("/ServletRevista")
 public class ServletRevista extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -37,7 +37,8 @@ public class ServletRevista extends HttpServlet {
         super();
         editoraDao = new EditoraDao();
     }
-
+ 
+    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String forward = "";
         String action = request.getParameter("action");
@@ -69,11 +70,7 @@ public class ServletRevista extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         
-        Aluno aluno = new Aluno();
-        aluno.setMatricula(request.getParameter("matricula"));
-        aluno.setCurso(request.getParameter("curso"));
-        String codigo = request.getParameter("codigo");
+
         
         
         Pessoa pessoa = new Pessoa();

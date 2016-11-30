@@ -1,14 +1,12 @@
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%
-        // verificando se tem um atributo login na sessao
-    // se tiver vai continuar e mostrar o menu
-    if (session.getAttribute("login") != null) {
+	// verificando se tem um atributo login na sessao
+	// se tiver vai continuar e mostrar o menu
+	if(session.getAttribute("login") != null) {
 %>
 <html lang="en">
     <head>
-        <title>Revista</title>
+        <title>Autores</title>
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="images/favicon.ico">
@@ -53,7 +51,7 @@
             </div>
             <section id="stuck_container">
                 <!--==============================
-                             menu
+                           MEnu
                 =================================-->
                 <div class="container">
                     <div class="row">
@@ -83,7 +81,7 @@
             </section>
         </header>
         <!--=====================
-                  Content
+                  CORPO
         ======================-->
         <section id="content"><div class="ic"></div>
             <div class="container">
@@ -91,7 +89,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRAR REVISTA</marquee>
+                            <marquee>CADASTRAR AUTORES</marquee>
                         </h3>
                     </div>
 
@@ -106,33 +104,17 @@
                         <div class="grid_4">
                             <div class="block-3">
 
-                              <form method="POST" action="ServletRevista" name="cadastrorevista">
+                                <form method="POST" action="ServletAutores" name="CadastroAutores">
                                     <ul class="form-style-1">
 
 
-                                        <li><label>Edição</label>
-                                            <input type="text"  name="coidgo" class="field-divided" placeholder="edição" size="150"/></li>
+                                        <li><label>Nome</label>
+                                            <input type="text"  name="nome" class="field-divided" placeholder="nome" size="150"/></li>
                                         <li>
-                                        <li><label>Numero de Edição <span class="required">*</span></label>
-                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                        <li><label>Descrição <span class="required">*</span></label>
+                                            <input type="text"  name="descricao" class="field-divided" placeholder="descricao" size="150"/></li>
                                         <li>
-                                        <li><label>Data Da Publicação <span class="required">*</span></label>
-                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
-                                        <li>
-                                        <div>
-                                            <li>
-						<select id="editora" name="editora">
-							<option value="Selecione uma Editora">Selecione Uma Editora</option>				
-							<c:forEach items="${editoras}" var="editora">
-								<option value="${editora.nome}">${editora.nome}</option>								
-							</c:forEach>			
-						</select>
-                                            </li>
-					</div>
-
-
-
-                                        <li>
+                                       <li>
                                             <input type="submit" value="Cadastrar" />
                                             <input type="submit" value="Limpar" />
 
@@ -153,7 +135,7 @@
             </div>
         </section>
         <!--==============================
-                      roda pé
+                      RODA PÉ
         =================================-->
         <footer id="footer">
             <div class="container">
@@ -170,11 +152,11 @@
     </body>
 </html>
 <%
-        // se não existir um login na sessao, 
-    // vai enviar para a página de login novamente
-} else {
+	// se não existir um login na sessao, 
+	// vai enviar para a página de login novamente
+	} else {
 %>
-<jsp:forward page="login.jsp"></jsp:forward>
+	<jsp:forward page="login.jsp"></jsp:forward>
 <%
-    }
+}
 %>

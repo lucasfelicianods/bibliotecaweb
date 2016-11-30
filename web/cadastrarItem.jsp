@@ -109,16 +109,22 @@
                                     <ul class="form-style-1">
 
                                         <li>
-                                            <a href="artigo.jsp"> <input  type="button" size="100" value="Cadastrar Artigo  " /></a>
+                                            <a href="artigo.jsp"> <input  type="button" size="100" value="Cadastrar Artigo    " /></a>
                                         </li>
                                         <li>
-                                            <a href="livro.jsp"><input type="button" value="Cadastrar Livro    " /></a>
+                                            <a href="livro.jsp"><input type="button" value="Cadastrar Livro       " /></a>
                                         </li>
                                         <li>
-                                             <a href="revista.jsp"><input type="button"" value="Cadastrar Revista " /></a>
+                                             <a href="ServletRevista"><input type="button" value="Cadastrar Revista  " /></a>
                                         </li>
                                         <li>
-                                            <a href="video.jsp"> <input type="submit" value="Cadastrar Video    " /></a>
+                                            <a href="video.jsp"> <input type="button" value="Cadastrar Video      " /></a>
+                                        <li>
+                                            <li>
+                                            <a href="editora.jsp"> <input type="button" value="Cadastrar Editora    " /></a>
+                                        <li>
+                                            <li>
+                                            <a href="autores.jsp"> <input type="button" value="Cadastrar Autores    " /></a>
                                         <li>
                                     </ul>
                                 </form>

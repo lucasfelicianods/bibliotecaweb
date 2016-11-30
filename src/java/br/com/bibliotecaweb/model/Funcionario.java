@@ -15,6 +15,7 @@ public class Funcionario {
     private String cargo;
     private float salario;
     private boolean administrador;
+  
     private Pessoa pessoa;
 
     public Integer getCodigo() {
@@ -41,13 +42,7 @@ public class Funcionario {
         this.salario = salario;
     }
 
-    public boolean isAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(boolean administrador) {
-        this.administrador = administrador;
-    }
+   
 
     public Pessoa getPessoa() {
         return pessoa;
@@ -55,6 +50,14 @@ public class Funcionario {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
     }
     
     

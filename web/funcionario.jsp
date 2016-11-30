@@ -104,7 +104,7 @@
                         <div class="grid_4">
                             <div class="block-3">
 
-                                <form>
+                                <form method="POST" action="ServletFuncionario" name="PessoaFuncionario">
                                     <ul class="form-style-1">
                                         <li>
                                             <label>Tipo De Cadastro </label>
@@ -118,7 +118,7 @@
                                         </li>
                                         <li>
                                             <label>Email <span class="required">*</span></label>
-                                            <input type="email" required name="email" class="field-long" placeholder="Digite seu e-mail" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'" />
+                                            <input type="text" required name="email" class="field-long" placeholder="Digite seu e-mail" onfocus="this.style.backgroundColor = '#D3D3D3'" onblur="this.style.backgroundColor = '#ffffff'" />
 
                                         </li>
                                         <li>
@@ -177,7 +177,7 @@
                                         </li>
                                         <li>
                                             <label>Administrador</label>
-                                            <input type="checkbox" name="administrador" value="Milk"> Sim
+                                            <input type="checkbox" name="adm" value="Milk"> Sim
                                         </li>
 
                                         <li>

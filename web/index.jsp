@@ -5,11 +5,8 @@
 --%>
 
 <!DOCTYPE html>
-<%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if(session.getAttribute("login") != null) {
-%>
+
+
 <html lang="en">
 <head>
 <title>Home</title>
@@ -55,22 +52,40 @@
   <!--==============================
                menu
   =================================-->
+
     <div class="container">
       <div class="row">
         <div class="grid_12 ">
           <div class="navigation ">
             <nav>
               <ul class="sf-menu">
-               <li class="current"><a href="index.jsp">Home</a></li>
+                  <li class="current"><a href="index.jsp">Home</a></li>
+                  <li><a href="cadastrase.jsp">Cadastra-se</a></li>
+                  
+                    <%
+	// verificando se tem um atributo login na sessao
+	// se tiver vai continuar e mostrar o menu
+	if(session.getAttribute("login") == null) {
+            
+%>
+               
+               <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+               <li><a href="login.jsp">Entrar</a></li>
+               <%
+        } else{
+            %>
+               
                <li><a href="cadastrarItem.jsp">Cadastro de Acervo</a></li>
-               <li><a href="cadastrase.jsp">Cadastra-se</a></li>
+               
                <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
                <li><a href="emprestimo.jsp">Emprestimo</a></li>
                <li><a href="reserva.jsp">Reserva</a></li>
                <li><a href="relatorio.jsp">Relatórios</a></li>
                <li><a href="localizacao.jsp">Localização</a></li>
-               <li><a href="login.jsp">Entrar</a></li>
-               <li><a href="ServletLogin?acao=logout">Sair</a></li>
+              <li><a href="ServletLogin?acao=logout">Sair</a></li>
+               <%
+        }
+        %>
              </ul>
             </nav>
             <div class="clear"></div>
@@ -218,12 +233,3 @@
 <a href="#" id="toTop" class="fa fa-chevron-up"></a>
 </body>
 </html>
-<%
-	// se não existir um login na sessao, 
-	// vai enviar para a página de login novamente
-	} else {
-%>
-	<jsp:forward page="login.jsp"></jsp:forward>
-<%
-}
-%>

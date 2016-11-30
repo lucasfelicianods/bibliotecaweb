@@ -1,6 +1,7 @@
 
 package br.com.bibliotecaweb.model;
 
+import br.com.bibliotecaweb.dal.TipoUsuarioDao;
 import java.util.Date;
 
 public class Pessoa {
@@ -22,6 +23,9 @@ public class Pessoa {
     private String complementacao;
     private String cidade;
     private String estado;
+    
+    //Perfil da Pessoa
+    private TipoUsuario tipoUsuario = new TipoUsuario();
     
     //att
     private Aluno aluno = new Aluno();
@@ -200,6 +204,16 @@ public class Pessoa {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
+    
+    
     
     
     

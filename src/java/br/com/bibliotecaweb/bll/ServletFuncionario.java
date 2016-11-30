@@ -2,10 +2,14 @@ package br.com.bibliotecaweb.bll;
 
 
 import br.com.bibliotecaweb.dal.AlunoDao;
+import br.com.bibliotecaweb.dal.FuncionarioDao;
 import br.com.bibliotecaweb.dal.PessoaDao;
+import br.com.bibliotecaweb.dal.ProfessorDao;
 import br.com.bibliotecaweb.dal.TipoUsuarioDao;
 import br.com.bibliotecaweb.model.Aluno;
+import br.com.bibliotecaweb.model.Funcionario;
 import br.com.bibliotecaweb.model.Pessoa;
+import br.com.bibliotecaweb.model.Professor;
 import br.com.bibliotecaweb.model.TipoUsuario;
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,19 +30,20 @@ import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/ServletAluno")
-public class ServletAluno extends HttpServlet {
+@WebServlet("/ServletFuncionario")
+public class ServletFuncionario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/aluno.jsp";
+    private static String INSERT_OR_EDIT = "/funcionario.jsp";
     private static String LIST_CLIENTE = "/index.jsp";
-    private AlunoDao alunoDao;
     private PessoaDao pessoaDao;
-    private TipoUsuarioDao tipoUsuarioDao; 
+    private FuncionarioDao funcionarioDao; 
+      private TipoUsuarioDao tipoUsuarioDao; 
+    
 
-    public ServletAluno() throws SQLException{
+    public ServletFuncionario() throws SQLException{
         super();
-        alunoDao = new AlunoDao();
+        funcionarioDao = new FuncionarioDao();
         pessoaDao = new PessoaDao();
         tipoUsuarioDao = new TipoUsuarioDao(); 
     }
@@ -50,25 +54,23 @@ public class ServletAluno extends HttpServlet {
 
         if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("codigo"));
-           alunoDao.deleteAluno(id);
+            funcionarioDao.deleteProfessor(id);
             forward = LIST_CLIENTE;
-            request.setAttribute("cliente", alunoDao.TodosAlunos());
+            request.setAttribute("cliente", funcionarioDao.getTodosAlunos());
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             int id = Integer.parseInt(request.getParameter("id"));
-            Aluno pessoa = alunoDao.consultaPorCodigo(id);
+            Aluno pessoa = funcionarioDao.consultaPorCodigo(id);
             request.setAttribute("lucas", pessoa);
         } else if (action.equalsIgnoreCase("showCliente")) {
             forward = LIST_CLIENTE;
             
-            Iterator<Pessoa> todosClientes = alunoDao.TodosAlunos();
-//            for(Pessoa c: todosClientes)
-             // System.out.println("lucas:" + c.getNome());
-            {
-              
+            List<Pessoa> todosClientes = funcionarioDao.getTodosAlunos();
+            for(Pessoa c: todosClientes){
+                System.out.println("lucas:" + c.getNome());
             }
             
-            request.setAttribute("cliente", alunoDao.TodosAlunos());
+            request.setAttribute("cliente", funcionarioDao.getTodosAlunos());
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -78,19 +80,22 @@ public class ServletAluno extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-         
-        Aluno aluno = new Aluno();
-        aluno.setMatricula(request.getParameter("matricula"));
-        aluno.setCurso(request.getParameter("curso"));
+              
+        Funcionario funcionario = new Funcionario();
         String codigo = request.getParameter("codigo");
+        funcionario.setCargo(request.getParameter("cargo"));
+        funcionario.setSalario(Float.parseFloat(request.getParameter("salario")));
+        funcionario.setAdministrador(request.getParameter("adm") != null);
+     
+      
+        
         
         
         Pessoa pessoa = new Pessoa();
-        
-        pessoa.setCpf(request.getParameter("cpf"));
         pessoa.setNome(request.getParameter("nome"));
-        pessoa.setRg(request.getParameter("rg"));
+        pessoa.setCpf(request.getParameter("cpf"));
         pessoa.setEmail(request.getParameter("email"));
+        pessoa.setRg(request.getParameter("rg"));
    try {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 pessoa.setDataCadastro(sdf.parse(request.getParameter("datacadastro")));
@@ -108,21 +113,29 @@ public class ServletAluno extends HttpServlet {
         pessoa.setComplementacao(request.getParameter("complemento"));
         pessoa.setCidade(request.getParameter("cidade"));
         pessoa.setEstado(request.getParameter("estado"));
-        
+      
         TipoUsuario tipoUsuario =  tipoUsuarioDao.consultarPorDescricao(request.getParameter("tipocadastro"));
         pessoa.setTipoUsuario(tipoUsuario);
         
+//        if (codigo == null || codigo.isEmpty()) {
+//            
+//            Professor professorIncluido = professorDao.incluirProfessor(professor);
+//            pessoa.setProfessor(professorIncluido);
+//            pessoaDao.incluirPessoa(pessoa);
+//        } else {
+//            pessoa.setCodigo(Integer.parseInt(codigo));
+//            professorDao.updateAlunos(pessoa);
+//        }
+////       pessoaDao.incluirPessoa(pessoa);
         
-     
-        if (codigo == null || codigo.isEmpty()) {
-            Aluno alunoIncluido = alunoDao.incluirAluno(aluno);
-            pessoa.setAluno(alunoIncluido);
+            if (codigo == null || codigo.isEmpty()) {
+            Funcionario funcionarioIncluido = funcionarioDao.incluirFuncionario(funcionario);
+            pessoa.setFuncionario(funcionarioIncluido);
             pessoaDao.incluirPessoa(pessoa);
         } else {
             pessoa.setCodigo(Integer.parseInt(codigo));
-            alunoDao.updateAlunos(pessoa);
+            funcionarioDao.updateAlunos(pessoa);
         }
-//       pessoaDao.incluirPessoa(pessoa);
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);
         //request.setAttribute("cliente", alunoDao.getTodosAlunos());
         view.forward(request, response);

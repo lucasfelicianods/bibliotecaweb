@@ -5,8 +5,12 @@
  */
 package br.com.bibliotecaweb.dal;
 
+import br.com.bibliotecaweb.model.Aluno;
+import br.com.bibliotecaweb.model.Funcionario;
+import br.com.bibliotecaweb.model.Pessoa;
+import br.com.bibliotecaweb.model.Professor;
+import br.com.bibliotecaweb.util.Conexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,74 +18,67 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.bibliotecaweb.model.Aluno;
-import br.com.bibliotecaweb.model.Pessoa;
-import br.com.bibliotecaweb.util.Conexao;
-import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author luks_
- */
-public class AlunoDao {
-
+public class FuncionarioDao {
     private Connection connection;
 
-    public AlunoDao() {
+    public FuncionarioDao() {
         connection = Conexao.getConnection();
     }
 
-        //---------- DAO ALUNO ---------------------//
+        //---------- DAO FUNCIONARIO ---------------------//
     
 
-    public Aluno incluirAluno(Aluno aluno) {
+    public Funcionario incluirFuncionario(Funcionario funcionario) {
        
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("insert into aluno("
-                            + "matricula,"
-                            + "curso)"
+                    .prepareStatement("insert into funcionario("
+                            + "cargo,"
+                            + "salario,"
+                            + "administrador)"
                             + "values"
-                            + "( ?, ?)");
+                            + "( ?, ?,?)");
             
-            preparedStatement.setString(1, aluno.getMatricula());
-            preparedStatement.setString(2, aluno.getCurso());
+            preparedStatement.setString(1, funcionario.getCargo());
+            preparedStatement.setFloat(2, funcionario.getSalario());
+            preparedStatement.setBoolean(3, funcionario.isAdministrador());
             preparedStatement.executeUpdate();
+           
             
-            return consultarPorMatricula(aluno.getMatricula());
+            return consultarPorCargo(funcionario.getCargo());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
-    
-    public Aluno consultarPorMatricula(String matricula) {
-        Aluno aluno = new Aluno();
+      public Funcionario consultarPorCargo(String cargo) {
+        Funcionario funcionario = new Funcionario();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from aluno where matricula=?");
-            preparedStatement.setString(1, matricula);
+                    prepareStatement("select * from funcionario where cargo=?");
+            preparedStatement.setString(1, cargo);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                aluno.setCodigo(rs.getInt("codigo"));
-                aluno.setMatricula(rs.getString("matricula"));
-                aluno.setCurso(rs.getString("curso"));
-
-            }
+                funcionario.setCodigo(rs.getInt("codigo"));
+                funcionario.setCargo(rs.getString("cargo"));
+                funcionario.setSalario(rs.getFloat("salario"));
+                funcionario.setAdministrador(true);
+                
+                        }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return aluno;
-    
+        return funcionario;
+    }
 
-    } 
-    
 
-    public void deleteAluno(int codigo) {
+
+
+    
+    public void deleteProfessor(int codigo) {
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement("delete from cliente where id=?");
@@ -122,39 +119,37 @@ public class AlunoDao {
     }
 
     // MOSTAR TODOS OS CLIENTE
-   public Iterator<Pessoa> TodosAlunos() {
-        List<Pessoa> pessoas = new ArrayList<Pessoa>();
+    public List<Pessoa> getTodosAlunos() {
+        List<Pessoa> pessoa = new ArrayList<Pessoa>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from aluno");
+            ResultSet rs = statement.executeQuery("select * from cliente");
             while (rs.next()) {
-                Pessoa pessoa = new Pessoa();
-                pessoa.setCpf(rs.getString("cpf"));
-                pessoa.setNome(rs.getString("nome"));
-                pessoa.setRg(rs.getString("rg"));
-                pessoa.setRg(rs.getString("email"));
-                pessoa.setDataCadastro(rs.getDate("datacadastro"));
-                pessoa.setTelefoneResidecial(rs.getString("teleforesidencial"));
-                pessoa.setTelefoneCelular(rs.getString("telefocelular"));
-                pessoa.setTelefoneComercial(rs.getString("telefocomercial"));
-                pessoa.setLogin(rs.getString("login"));
-                pessoa.setSenha(rs.getString("senha"));
-                pessoa.setRua(rs.getString("rua"));
-                pessoa.setBairro(rs.getString("bairro"));
-                pessoa.setComplementacao(rs.getString("complemento"));
-                pessoa.setCidade(rs.getString("cidade"));
-                pessoa.setEstado(rs.getString("estado"));
+                Pessoa pessoas = new Pessoa();
+                pessoas.setCpf(rs.getString("cpf"));
+                pessoas.setNome(rs.getString("nome"));
+                pessoas.setRg(rs.getString("rg"));
+                pessoas.setDataCadastro(rs.getDate("datacadastro"));
+                pessoas.setTelefoneResidecial(rs.getString("teleforesidencial"));
+                pessoas.setTelefoneCelular(rs.getString("telefocelular"));
+                pessoas.setTelefoneComercial(rs.getString("telefocomercial"));
+                pessoas.setLogin(rs.getString("login"));
+                pessoas.setSenha(rs.getString("senha"));
+                pessoas.setRua(rs.getString("rua"));
+                pessoas.setBairro(rs.getString("bairro"));
+                pessoas.setComplementacao(rs.getString("complemento"));
+                pessoas.setCidade(rs.getString("cidade"));
+                pessoas.setEstado(rs.getString("estado"));
 
-                pessoas.add(pessoa);
+                pessoa.add(pessoas);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return pessoas.iterator();
+        return pessoa;
     }
 
-   
     public Aluno consultaPorCodigo(int codigo) {
         Aluno aluno = new Aluno();
         try {
@@ -178,6 +173,6 @@ public class AlunoDao {
         return aluno;
     }
 
-    }
+  
 
-
+}
