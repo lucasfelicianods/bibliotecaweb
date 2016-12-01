@@ -1,6 +1,6 @@
 package br.com.bibliotecaweb.bll;
 
-
+import br.com.bibliotecaweb.dal.PessoaDao;
 import br.com.bibliotecaweb.dal.ValidaLogin;
 import br.com.bibliotecaweb.model.Pessoa;
 import java.io.IOException;
@@ -22,10 +22,12 @@ public class ServletLogin extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private ValidaLogin dal;
+    private PessoaDao perfilLogin;
 
     public ServletLogin() {
         super();
         dal = new ValidaLogin();
+        perfilLogin = new PessoaDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,26 +51,35 @@ public class ServletLogin extends HttpServlet {
         // Validando se o usuário é igual a "admin" e a senha é igual a "senha"
 
         if (request.getParameter("acao").equals("login")) {
-            
 
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
             Pessoa pessoa = new Pessoa();
             pessoa.setLogin(login);
             pessoa.setSenha(senha);
-            
-
             dal.ValidarLogin(pessoa);
-            if(dal.ValidarLogin(pessoa) == true){
+            //perfilLogin.retornaPerfilCadastro(login);
+
+            if (dal.ValidarLogin(pessoa) == true) {
                 HttpSession sessao = request.getSession();
-            // setando um atributo da sessao
-            sessao.setAttribute("login", request.getParameter("login"));
+                // setando um atributo da sessao
+                sessao.setAttribute("login", request.getParameter("login"));
+//                if (perfilLogin.validaTipoAluno(login) == true) {
+//                    RequestDispatcher r = request.getRequestDispatcher("indexAlunoProfessor.jsp");
+//                    r.forward(request, response);
+//                }
+//                if (perfilLogin.validaTipoProfessor(login) == true) {
+//                    RequestDispatcher r = request.getRequestDispatcher("indexAlunoProfessor.jsp");
+//                    r.forward(request, response);
+//                }
+//                
+
+                pagina = "index.jsp";
+
             // como obtive sucesso, chamo a página principal
-            pagina = "index.jsp";
-            }else{
-               request.getSession().invalidate();
+            } else {
+                request.getSession().invalidate();
             }
-            
 
         } else if (request.getParameter("acao").equals("logout")) {
             // no logout invalido a sessao
@@ -76,10 +87,10 @@ public class ServletLogin extends HttpServlet {
             sessao.invalidate();
             // chamo novamente a pagina principal, que deve chamar a página index
             // que ira mostrar o formulario para o usuário logar
-            pagina = "login.jsp";
+            pagina = "index.jsp";
         }
 
-      response.sendRedirect(pagina);
+        response.sendRedirect(pagina);
 
     }
 }

@@ -89,7 +89,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>CADASTRO DE FUNCIONÁRIO</marquee>
+                            <marquee>CADASTRO DE FUNCIONARIO</marquee>
                         </h3>
                     </div>
 
@@ -108,7 +108,7 @@
                                     <ul class="form-style-1">
                                         <li>
                                             <label>Tipo De Cadastro </label>
-                                            <input type="email" required name="nome" class="field-long" readonly="" placeholder="FUNCIONARIO"/>
+                                            <input type="text" required name="tipocadastro" class="field-long"  placeholder="FUNCIONARIO"/>
 
                                         </li>
                                         <li>

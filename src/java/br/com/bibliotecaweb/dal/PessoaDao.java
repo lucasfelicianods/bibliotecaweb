@@ -1,8 +1,9 @@
-
 package br.com.bibliotecaweb.dal;
 
 import br.com.bibliotecaweb.model.Aluno;
+import br.com.bibliotecaweb.model.Funcionario;
 import br.com.bibliotecaweb.model.Pessoa;
+import br.com.bibliotecaweb.model.TipoUsuario;
 import br.com.bibliotecaweb.util.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,46 +13,43 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class PessoaDao {
-     private Connection connection;
+
+    private Connection connection;
 
     public PessoaDao() {
         connection = Conexao.getConnection();
     }
 
         //---------- PERSISTENCIA PESSOA ---------------------//
-    
-    
-
     public Pessoa incluirPessoa(Pessoa pessoa) {
-     
+
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement(
-                            
                             "insert into pessoa("
-                                    + "nome, "
-                                    + "rg, "
-                                    + "email,"
-                                    + "datacadastro,"
-                                    + "telefonecelular,"
-                                    + "telefoneresidencial,"
-                                    + "telefonecomercial,"
-                                    + "rua,"
-                                    + "complemento,"
-                                    + "bairro,"
-                                    + "estado,"
-                                    + "cidade,"
-                                    + "codigo_aluno,"
-                                    + "codigo_funcionario,"
-                                    + "codigo_professor,"
-                                    + "cpf,"
-                                    + "login,"
-                                    + "senha) "
-                                    + "values "
-                                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                                               
+                            + "nome, "
+                            + "rg, "
+                            + "email,"
+                            + "datacadastro,"
+                            + "telefonecelular,"
+                            + "telefoneresidencial,"
+                            + "telefonecomercial,"
+                            + "rua,"
+                            + "complemento,"
+                            + "bairro,"
+                            + "estado,"
+                            + "cidade,"
+                            + "codigo_aluno,"
+                            + "codigo_funcionario,"
+                            + "codigo_professor,"
+                            + "cpf,"
+                            + "login,"
+                            + "senha,"
+                            + "codigo_tipousuario) "
+                            + "values "
+                            + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
             // Parameters start with 1
             preparedStatement.setString(1, pessoa.getNome());
             preparedStatement.setString(2, pessoa.getRg());
@@ -65,54 +63,142 @@ public class PessoaDao {
             preparedStatement.setString(10, pessoa.getBairro());
             preparedStatement.setString(11, pessoa.getEstado());
             preparedStatement.setString(12, pessoa.getCidade());
-            if(pessoa.getAluno().getCodigo() != null) {
+            if (pessoa.getAluno().getCodigo() != null) {
                 preparedStatement.setInt(13, pessoa.getAluno().getCodigo());
             } else {
-                preparedStatement.setNull(13,  java.sql.Types.INTEGER);
+                preparedStatement.setNull(13, java.sql.Types.INTEGER);
             }
-            if (pessoa.getFuncionario().getCodigo()!= null) {
+            if (pessoa.getFuncionario().getCodigo() != null) {
                 preparedStatement.setInt(14, pessoa.getFuncionario().getCodigo());
             } else {
-                preparedStatement.setNull(14,  java.sql.Types.INTEGER);
+                preparedStatement.setNull(14, java.sql.Types.INTEGER);
             }
-            if(pessoa.getProfessor().getCodigo() != null) {
+            if (pessoa.getProfessor().getCodigo() != null) {
                 preparedStatement.setInt(15, pessoa.getProfessor().getCodigo());
             } else {
-                preparedStatement.setNull(15,  java.sql.Types.INTEGER);
+                preparedStatement.setNull(15, java.sql.Types.INTEGER);
             }
             preparedStatement.setString(16, pessoa.getCpf());
             preparedStatement.setString(17, pessoa.getLogin());
             preparedStatement.setString(18, pessoa.getSenha());
-        
+            
+            preparedStatement.setInt(19, pessoa.getTipoUsuario().getCodigo());
+
             preparedStatement.executeUpdate();
             return consultarPorCpf(pessoa.getCpf());
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-         return null;
+        return null;
     }
-    
-     public Pessoa consultarPorCpf(String cpf) {
- 
+
+    public Pessoa consultarPorCpf(String cpf) {
+
         Pessoa pessoa = new Pessoa();
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select * from pessoa where cpf=?");
-            preparedStatement.setString(1, cpf);
+            preparedStatement.setString(1, pessoa.getCpf());
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
-            pessoa.setCodigo(rs.getInt("codigo"));
-                           
+                pessoa.setNome(rs.getString("nome"));
+                pessoa.setRg(rs.getString("rg"));
+                pessoa.setEmail(rs.getString("email"));
+                pessoa.setDataCadastro(rs.getDate("datacadastro"));
+                pessoa.setTelefoneCelular(rs.getString("telefonecelular"));
+                pessoa.setTelefoneResidecial(rs.getString("telefoneresidencial"));
+                pessoa.setTelefoneComercial(rs.getString("telefonecomercial"));
+                pessoa.setRua(rs.getString("rua"));
+                pessoa.setComplementacao(rs.getString("complemento"));
+                pessoa.setBairro(rs.getString("bairro"));
+                pessoa.setEstado(rs.getString("estado"));
+                pessoa.setCidade(rs.getString("cidade"));
+                pessoa.setCodigo(rs.getInt("codigo"));
+                pessoa.setCpf(rs.getString("cpf"));
+                pessoa.setLogin(rs.getString("login"));
+                pessoa.setSenha(rs.getString("senha"));
+                
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return pessoa;
-    
 
-    } 
+    }
+    
+    public TipoUsuario retornaPerfilCadastro(String descricao){
+        
+         TipoUsuario tipousuario = new TipoUsuario();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
+            preparedStatement.setString(1, descricao);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                tipousuario.setDescricao(rs.getString("descricao"));
+               
+                
+                        }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tipousuario;
+    }
+    
+    public boolean validaTipoAluno(String descricao){
+        
+         TipoUsuario tipousuario = new TipoUsuario();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
+            preparedStatement.setString(1, descricao);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                tipousuario.setDescricao(rs.getString("descricao"));
+                return true;
+                
+               
+                
+                        }else{
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+    
+    public boolean validaTipoProfessor(String descricao){
+        
+         TipoUsuario tipousuario = new TipoUsuario();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
+            preparedStatement.setString(1, descricao);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                tipousuario.setDescricao(rs.getString("descricao"));
+                return true;
+                
+               
+                
+                        }else{
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }
 
 //    public void deleteAluno(int codigo_pessoa) {

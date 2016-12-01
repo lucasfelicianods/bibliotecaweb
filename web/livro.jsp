@@ -94,6 +94,8 @@
 
                 </div>
 
+          
+                
             </div>
             <article class="content_gray offset__1">
                 <div class="container">
@@ -108,15 +110,21 @@
 
 
                                         <li><label>Codigo De Barras</label>
-                                            <input type="text"  name="coidgo" class="field-divided" placeholder="codigo" size="150"/></li>
+                                            <input type="text"  name="codigobarras" class="field-divided" placeholder="codigo" size="150"/></li>
                                         <li>
                                         <li><label>Isbn <span class="required">*</span></label>
-                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                            <input type="text"  name="isbn" class="field-divided" placeholder="Isbn" size="150"/></li>
                                         <li>
                                         <li><label>Descrição <span class="required">*</span></label>
-                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
+                                            <input type="text"  name="descricao" class="field-divided" placeholder="Descrição" size="150"/></li>
                                         <li>
-                                        
+                                       <li>
+                                            <label>Exemplar Interno</label>
+                                            <input type="checkbox" name="exemplarconsultainterna" value="Milk"> Sim
+                                        </li>
+                                         <li><label>Quantidade Exemplares <span class="required">*</span></label>
+                                            <input type="text"  name="quantidadeexemplares" class="field-divided" placeholder="Quantidade Exemplares" size="150"/></li>
+                                        <li>
                                         
 
                                         <li>

@@ -4,9 +4,11 @@ package br.com.bibliotecaweb.bll;
 import br.com.bibliotecaweb.dal.AlunoDao;
 import br.com.bibliotecaweb.dal.PessoaDao;
 import br.com.bibliotecaweb.dal.ProfessorDao;
+import br.com.bibliotecaweb.dal.TipoUsuarioDao;
 import br.com.bibliotecaweb.model.Aluno;
 import br.com.bibliotecaweb.model.Pessoa;
 import br.com.bibliotecaweb.model.Professor;
+import br.com.bibliotecaweb.model.TipoUsuario;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +27,7 @@ import java.util.logging.Logger;
 
 import javax.servlet.annotation.WebServlet;
 
-
+                
 @WebServlet("/ServletProfessor")
 public class ServletProfessor extends HttpServlet {
 
@@ -34,12 +36,14 @@ public class ServletProfessor extends HttpServlet {
     private static String LIST_CLIENTE = "/index.jsp";
     private PessoaDao pessoaDao;
     private ProfessorDao professorDao; 
+     private TipoUsuarioDao tipoUsuarioDao; 
     
 
     public ServletProfessor() throws SQLException{
         super();
         professorDao = new ProfessorDao();
         pessoaDao = new PessoaDao();
+         tipoUsuarioDao = new TipoUsuarioDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,21 +109,15 @@ public class ServletProfessor extends HttpServlet {
         pessoa.setComplementacao(request.getParameter("complemento"));
         pessoa.setCidade(request.getParameter("cidade"));
         pessoa.setEstado(request.getParameter("estado"));
-        
+         TipoUsuario tipoUsuario =  tipoUsuarioDao.consultarPorDescricao(request.getParameter("tipocadastro"));
+        pessoa.setTipoUsuario(tipoUsuario);
         
         if (codigo == null || codigo.isEmpty()) {
             
             Professor professorIncluido = professorDao.incluirProfessor(professor);
             pessoa.setProfessor(professorIncluido);
             pessoaDao.incluirPessoa(pessoa);
-            
-            
-            
-            
-            
-            
-            
-            
+    
         } else {
             pessoa.setCodigo(Integer.parseInt(codigo));
             professorDao.updateAlunos(pessoa);
