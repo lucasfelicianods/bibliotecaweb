@@ -35,7 +35,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletEditora extends HttpServlet {
  private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/editora.jsp";
-    private static String LIST_CLIENTE = "/index.jsp";
+    private static String LIST_CLIENTE = "/revista.jsp";
    
     private EditoraDao editoraDao;
 
@@ -89,10 +89,11 @@ public class ServletEditora extends HttpServlet {
      
         if (codigo == null || codigo.isEmpty()) {
           editoraDao.incluirEditora(editora);
+          
                        
         } else {
             editora.setCodigo(Integer.parseInt(codigo));
-            editoraDao.updateAlunos(editora);
+            editoraDao.updateEditoras(editora);
         }
 //       pessoaDao.incluirPessoa(pessoa);
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);

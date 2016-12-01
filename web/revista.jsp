@@ -62,7 +62,7 @@
                                 <nav>
                                     <ul class="sf-menu">
 
-                                        <li class="current"><a href="index.jsp">Home</a></li>
+                                        <li class="current"><a href="revista.jsp">Home</a></li>
                                         <li><a href="cadastrarItem.jsp">Cadastrar Acervo</a></li>
                                         <li><a href="cadastrase.jsp">Cadastra-se</a></li>
                                         <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
@@ -125,12 +125,15 @@
 							<option value="Selecione uma Editora">Selecione Uma Editora</option>				
 							<c:forEach items="${editoras}" var="editora">
 								<option value="${editora.nome}">${editora.nome}</option>								
-							</c:forEach>			
+							</c:forEach>
+                                                                
 						</select>
+                                                <li><a href="editora.jsp">Inserir nova editora</a></li> 
                                             </li>
 					</div>
 
-
+                                            <br
+                                            <br>
 
                                         <li>
                                             <input type="submit" value="Cadastrar" />

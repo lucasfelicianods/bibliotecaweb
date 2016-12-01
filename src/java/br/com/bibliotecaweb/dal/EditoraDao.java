@@ -1,4 +1,3 @@
-
 package br.com.bibliotecaweb.dal;
 
 import br.com.bibliotecaweb.model.Aluno;
@@ -14,41 +13,37 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class EditoraDao {
+
     private Connection connection;
-    
+
     public EditoraDao() {
         connection = Conexao.getConnection();
     }
 
         //---------- Midia Dao---------------------//
-    
-    
-
     public Editora incluirEditora(Editora editora) {
-     
+
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement(
-                            
                             "insert into editora("
-                                    + "nome,"
-                                    + "descricao)"
-                                    + "values "
-                                    + "(?,?)");
-                                               
+                            + "nome,"
+                            + "descricao)"
+                            + "values "
+                            + "(?,?)");
+
             // verificar o tipo de midia que esta sendo cadastrado
             preparedStatement.setString(1, editora.getNome());
             preparedStatement.setString(2, editora.getDescricao());
             preparedStatement.executeUpdate();
-                        
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-         return editora;
+        return editora;
     }
+
     public Aluno consultarPorMatricula(String matricula) {
         Aluno aluno = new Aluno();
         try {
@@ -68,10 +63,8 @@ public class EditoraDao {
         }
 
         return aluno;
-    
 
-    } 
-    
+    }
 
     public void deleteAluno(int codigo) {
         try {
@@ -86,17 +79,16 @@ public class EditoraDao {
         }
     }
 
-    public void updateAlunos(Editora editora) {
+    public void updateEditoras(Editora editora) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update cliente set nome=?,cpf=?,datanascimento=?,telefone=?,celular=?,endereco=?,bairro=?,cep=?,email=?,obs=? "
-                            + "where id=?");
+                    .prepareStatement("update editora set nome=?,descricao? "
+                            + "where cogigo=?");
             // Parameters start with 1
             preparedStatement.setInt(1, editora.getCodigo());
             preparedStatement.setString(1, editora.getNome());
-             preparedStatement.setString(1, editora.getDescricao());
-            
-           
+            preparedStatement.setString(1, editora.getDescricao());
+
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -106,20 +98,19 @@ public class EditoraDao {
 
     // MOSTAR TODOS OS CLIENTE
     public List<Editora> TodosEditoras() {
-        
-      
+
         List<Editora> editoras = new ArrayList<Editora>();
+      
         try {
-            Editora  ed = new Editora();
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from editora");
             while (rs.next()) {
-           ed.setCodigo(rs.getInt("codigo"));
-           ed.setNome(rs.getString("nome"));
-           ed.setDescricao(rs.getString("descricao"));
-           
-              
-               
+                Editora ed = new Editora();
+                ed.setCodigo(rs.getInt("codigo"));
+                ed.setNome(rs.getString("nome"));
+                ed.setDescricao(rs.getString("descricao"));
+                editoras.add(ed);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,8 +131,6 @@ public class EditoraDao {
                 aluno.setCodigo(codigo);
                 aluno.setMatricula("matricula");
                 aluno.setCurso("matricula");
-                  
-          
 
             }
         } catch (SQLException e) {
@@ -151,6 +140,4 @@ public class EditoraDao {
         return aluno;
     }
 
-    
 }
-
