@@ -101,6 +101,8 @@ public class EditoraDao {
 
         List<Editora> editoras = new ArrayList<Editora>();
       
+        
+        
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from editora");
