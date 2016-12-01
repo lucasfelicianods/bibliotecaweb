@@ -73,6 +73,7 @@ select{
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
+    width: 35%;
 }
 .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
     background: #4691A4;

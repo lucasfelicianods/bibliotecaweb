@@ -109,12 +109,15 @@
                               <form method="POST" action="ServletRevista" name="cadastrorevista">
                                     <ul class="form-style-1">
 
-
+                                        
+                                         <li><label> Titulo <span class="required">*</span></label>
+                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                        
                                         <li><label>Edição</label>
-                                            <input type="text"  name="coidgo" class="field-divided" placeholder="edição" size="150"/></li>
+                                            <input type="text"  name="edicao" class="field-divided" placeholder="edição" size="150"/></li>
                                         <li>
                                         <li><label>Numero de Edição <span class="required">*</span></label>
-                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                            <input type="text"  name="numerodaedicao" class="field-divided" placeholder="numerodaedicao" size="150"/></li>
                                         <li>
                                         <li><label>Data Da Publicação <span class="required">*</span></label>
                                             <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
@@ -128,18 +131,19 @@
 							</c:forEach>
                                                                 
 						</select>
-                                                <li><a href="editora.jsp">Inserir nova editora</a></li> 
+                                                <br>
+                                                <br>
+                                            <li>  <a href="editora.jsp">Inserir nova editora</a></li>
                                             </li>
-					</div>
-
+					
                                             <br
                                             <br>
-
-                                        <li>
+                                            <li>
                                             <input type="submit" value="Cadastrar" />
                                             <input type="submit" value="Limpar" />
 
                                         </li>
+                                        </div>
                                     </ul>
                                 </form>
 

@@ -98,6 +98,8 @@ public class ServletEditora extends HttpServlet {
 //       pessoaDao.incluirPessoa(pessoa);
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);
         //request.setAttribute("cliente", alunoDao.getTodosAlunos());
+        List<Editora> revistas = editoraDao.TodosEditoras();
+        request.setAttribute("editoras", revistas);
         view.forward(request, response);
     }
 }

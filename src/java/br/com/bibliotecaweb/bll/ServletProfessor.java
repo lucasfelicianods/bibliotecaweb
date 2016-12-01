@@ -36,14 +36,14 @@ public class ServletProfessor extends HttpServlet {
     private static String LIST_CLIENTE = "/index.jsp";
     private PessoaDao pessoaDao;
     private ProfessorDao professorDao; 
-     private TipoUsuarioDao tipoUsuarioDao; 
+    private TipoUsuarioDao tipoUsuarioDao; 
     
 
     public ServletProfessor() throws SQLException{
         super();
         professorDao = new ProfessorDao();
         pessoaDao = new PessoaDao();
-         tipoUsuarioDao = new TipoUsuarioDao();
+        tipoUsuarioDao = new TipoUsuarioDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

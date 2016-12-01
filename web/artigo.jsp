@@ -108,18 +108,23 @@
                                     <ul class="form-style-1">
 
 
-                                        <li><label>Codigo Da Midia</label>
-                                            <input type="text"  name="coidgo" class="field-divided" placeholder="codigo" size="150"/></li>
                                         <li>
                                         <li><label>Titulo <span class="required">*</span></label>
-                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="300"/></li>
                                         <li>
                                         <li><label>Data Da Publicação <span class="required">*</span></label>
-                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
+                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="300"/></li>
                                         <li>
                                         <li><label>Tema <span class="required">*</span></label>
-                                            <input type="text"  name="Tema" class="field-divided" placeholder="Tema" size="150"/></li>
+                                            <input type="text"  name="Tema" class="field-divided" placeholder="Tema" size="300"/></li>
                                         <li> 
+                                               <select id="autores" name="autor " style="width:49%;">
+							<option value="Selecione um Autor">Selecione Um Autor</option>				
+							<c:forEach items="${autores}" var="autor">
+								<option value="${autor.nome}">${autor.nome}</option>								
+							</c:forEach>
+                                                                
+						</select>
 
                                         <li>
                                             <input type="submit" value="Cadastrar" />

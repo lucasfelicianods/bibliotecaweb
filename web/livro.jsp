@@ -108,7 +108,9 @@
                                 <form>
                                     <ul class="form-style-1">
 
-
+                                        <li><label>Titulo <span class="required">*</span></label>
+                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                        
                                         <li><label>Codigo De Barras</label>
                                             <input type="text"  name="codigobarras" class="field-divided" placeholder="codigo" size="150"/></li>
                                         <li>
@@ -118,7 +120,23 @@
                                         <li><label>Descrição <span class="required">*</span></label>
                                             <input type="text"  name="descricao" class="field-divided" placeholder="Descrição" size="150"/></li>
                                         <li>
-                                       <li>
+                                            <select id="editora" name="editora" style="width:49%;">
+                                                <option value="Selecione uma Editora">Selecione Uma Editora</option>				
+                                                <c:forEach items="${editoras}" var="editora" size="150">
+                                                    <option value="${editora.nome}">${editora.nome}</option>								
+                                                </c:forEach>
+                                            </select>
+                                                <br>
+                                                <br>
+                                            <select id="autores" name="autor" style="width:49%;">
+                                                <option value="Selecione um Autor">Selecione Um Autor</option>				
+                                                <c:forEach items="${autores}" var="autor">
+                                                    <option value="${autor.nome}">${autor.nome}</option>								
+                                                </c:forEach>
+                                                            
+                                            </select>
+                                                                
+                                            <li>
                                             <label>Exemplar Interno</label>
                                             <input type="checkbox" name="exemplarconsultainterna" value="Milk"> Sim
                                         </li>
