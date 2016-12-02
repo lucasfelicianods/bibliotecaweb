@@ -13,23 +13,27 @@ import java.sql.Date;
  */
 public class Revista {
     
-    private int edicao;
-    private int numero_edicao;
+    private int codigo;
+    private String edicao;
+    private String numero_edicao;
     private Date data_publicao;
+    private Midia midia;
+    private Editora editora;
+    
 
-    public int getEdicao() {
+    public String getEdicao() {
         return edicao;
     }
 
-    public void setEdicao(int edicao) {
+    public void setEdicao(String edicao) {
         this.edicao = edicao;
     }
 
-    public int getNumero_edicao() {
+    public String getNumero_edicao() {
         return numero_edicao;
     }
 
-    public void setNumero_edicao(int numero_edicao) {
+    public void setNumero_edicao(String numero_edicao) {
         this.numero_edicao = numero_edicao;
     }
 
@@ -39,6 +43,30 @@ public class Revista {
 
     public void setData_publicao(Date data_publicao) {
         this.data_publicao = data_publicao;
+    }
+
+    public Midia getMidia() {
+        return midia;
+    }
+
+    public void setMidia(Midia midia) {
+        this.midia = midia;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
     }
     
     

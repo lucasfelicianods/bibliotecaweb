@@ -38,10 +38,12 @@ public class ServletEditora extends HttpServlet {
     private static String LIST_CLIENTE = "/revista.jsp";
    
     private EditoraDao editoraDao;
+    private Editora editora;
 
     public ServletEditora() throws SQLException{
         super();
         editoraDao = new EditoraDao();
+        editora = new Editora();
         
     }
 
@@ -51,15 +53,16 @@ public class ServletEditora extends HttpServlet {
 
         if (action.equalsIgnoreCase("delete")) {
             int id = Integer.parseInt(request.getParameter("codigo"));
-           editoraDao.deleteAluno(id);
+           editoraDao.consultaPorCodigo(id);
             forward = LIST_CLIENTE;
-            request.setAttribute("cliente", editoraDao.TodosEditoras());
+            request.setAttribute("cliente", editoraDao.consultaPorCodigo(id));
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
             int id = Integer.parseInt(request.getParameter("id"));
-            Aluno pessoa = editoraDao.consultaPorCodigo(id);
-            request.setAttribute("lucas", pessoa);
+            //Editora editora = editoraDao.consultaPorCodigo(id)
+            //request.setAttribute("lucas", pessoa);
         } else if (action.equalsIgnoreCase("showCliente")) {
+ 
             forward = LIST_CLIENTE;
             
             List<Editora> todosClientes = editoraDao.TodosEditoras();

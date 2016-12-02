@@ -17,55 +17,69 @@ public class RevistaDao {
     public RevistaDao() {
         connection = Conexao.getConnection();
     }
-}
-        //---------- Revista Dao---------------------//
+
+      //  ---------- Revista Dao---------------------//
        
 
-//    public Revista incluirRevista(Revista revista) {
+    public Revista incluirRevista(Revista revista) {
      
-//        try {
-//            PreparedStatement preparedStatement = connection
-//                    .prepareStatement(
-//                            
-//                            "insert into revista("
-//                                    + "titulo )"
-//                                    + "values "
-//                                    + "(?)");
-//                                               
-//            // verificar o tipo de midia que esta sendo cadastrado
-//            preparedStatement.setString(1, midia.getTitulo());
-//            preparedStatement.executeUpdate();
-//            
-//            return consultarPorCodigo(midia.getCodigo());
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//         return null;
-//    }
+        try {
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement(
+                            
+                            "insert into revista("
+                                    + "edicao"
+                                    + "numeroedicao"
+                                    + "datapublicacao"
+                                    + "codigo_ditora)"
+                                    + "values"
+                                    + "(?,?,?,?,?)");
+                                               
+            // verificar o tipo de midia que esta sendo cadastrado
+            preparedStatement.setString(1, revista.getEdicao());
+            preparedStatement.setString(2, revista.getNumero_edicao());
+            preparedStatement.setDate(3, new java.sql.Date(revista.getData_publicao().getTime()));
+            preparedStatement.setInt(4, revista.getEditora().getCodigo());
+            
+            
+            
+            
+            preparedStatement.executeUpdate();
+            
+            return consultarPorCodigo(revista.getCodigo());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+         return null;
+    }
     
-//     public Midia consultarPorCodigo(Integer codigo) {
-// 
-//        Midia midia = new Midia();
-//        try {
-//            PreparedStatement preparedStatement = connection.
-//                    prepareStatement("select * from midia where codigo=?");
-//            preparedStatement.setInt(1, codigo);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            if (rs.next()) {
-//           midia.setCodigo(rs.getInt("codigo"));
-//           midia.setTitulo(rs.getString("titulo"));
-//                           
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return midia;
-//    
-//
-//    } 
-//}
+    public Revista consultarPorCodigo(int codigo) {
+        
+        Revista revista = new Revista();
+        try {
+            EditoraDao editoraDao = new EditoraDao();
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select * from revista where codigo=?");
+            preparedStatement.setInt(1, codigo);
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                revista.setCodigo(rs.getInt("codigo"));
+                revista.setEdicao(rs.getString("edicao"));
+                revista.setData_publicao(rs.getDate("datapublicacao"));
+                revista.setEditora(editoraDao.consultaPorCodigo((rs.getInt("codigoeditora"))));
+                
+                
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return revista;
+        
+
+    } 
+}
     
 
 

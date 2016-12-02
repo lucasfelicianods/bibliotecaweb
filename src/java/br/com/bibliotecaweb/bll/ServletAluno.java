@@ -60,11 +60,11 @@ public class ServletAluno extends HttpServlet {
             request.setAttribute("lucas", pessoa);
         } else if (action.equalsIgnoreCase("showCliente")) {
             forward = LIST_CLIENTE;
-            
-            Iterator<Pessoa> todosClientes = alunoDao.TodosAlunos();
+          
+             Iterator<Pessoa> todosClientes = alunoDao.TodosAlunos();
 //            for(Pessoa c: todosClientes)
              // System.out.println("lucas:" + c.getNome());
-            {
+            { 
               
             }
             

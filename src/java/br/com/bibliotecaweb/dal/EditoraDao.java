@@ -3,6 +3,7 @@ package br.com.bibliotecaweb.dal;
 import br.com.bibliotecaweb.model.Aluno;
 import br.com.bibliotecaweb.model.Editora;
 import br.com.bibliotecaweb.model.Midia;
+import br.com.bibliotecaweb.model.OrdenarEditora;
 import br.com.bibliotecaweb.model.Pessoa;
 import br.com.bibliotecaweb.util.Conexao;
 import java.sql.Connection;
@@ -16,9 +17,10 @@ import java.util.List;
 public class EditoraDao {
 
     private Connection connection;
-
+    private OrdenarEditora ordenarEditora; 
     public EditoraDao() {
         connection = Conexao.getConnection();
+        
     }
 
         //---------- Midia Dao---------------------//
@@ -43,7 +45,7 @@ public class EditoraDao {
         }
         return editora;
     }
-
+//
     public Aluno consultarPorMatricula(String matricula) {
         Aluno aluno = new Aluno();
         try {
@@ -101,8 +103,8 @@ public class EditoraDao {
 
         List<Editora> editoras = new ArrayList<Editora>();
       
-        
-        
+       
+      
         try {
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from editora");
@@ -112,6 +114,19 @@ public class EditoraDao {
                 ed.setNome(rs.getString("nome"));
                 ed.setDescricao(rs.getString("descricao"));
                 editoras.add(ed);
+                
+                OrdenarEditora teste = new OrdenarEditora(ed.getNome());
+                for (int i = 0; i < editoras.size()-1; i++) {
+                    for (int j = i+1; j < editoras.size(); j++) {
+                        if(!teste.ePrimeiro(editoras.get(i), editoras.get(j))){
+                            Editora temp = editoras.get(j);
+                            editoras.set(j, editoras.get(i));
+                            editoras.set(i, temp);
+                        }
+                    }
+                }
+              
+                
 
             }
         } catch (SQLException e) {
@@ -121,25 +136,25 @@ public class EditoraDao {
         return editoras;
     }
 
-    public Aluno consultaPorCodigo(int codigo) {
-        Aluno aluno = new Aluno();
+    public Editora consultaPorCodigo(int codigo) {
+        Editora editora = new Editora();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from aluno where id=?");
+                    prepareStatement("select * from editora where codigo=?");
             preparedStatement.setInt(1, codigo);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                aluno.setCodigo(codigo);
-                aluno.setMatricula("matricula");
-                aluno.setCurso("matricula");
+                editora.setCodigo(codigo);
+                editora.setDescricao("descricao");
+                editora.setNome("nome");
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return aluno;
+        return editora;
     }
 
 }

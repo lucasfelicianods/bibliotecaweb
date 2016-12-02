@@ -129,9 +129,7 @@
 							<c:forEach items="${editoras}" var="editora">
 								<option value="${editora.nome}">${editora.nome}</option>								
 							</c:forEach>
-                                                                
-						</select>
-                                                <br>
+                                                </select>
                                                 <br>
                                             <li>  <a href="editora.jsp">Inserir nova editora</a></li>
                                             </li>
