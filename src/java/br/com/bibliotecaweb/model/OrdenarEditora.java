@@ -13,3 +13,4 @@ public class OrdenarEditora extends EditoraTamplate {
         else return false;
     }
 }
+
