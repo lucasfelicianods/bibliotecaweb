@@ -121,7 +121,7 @@
                                             <a href="video.jsp"> <input type="button" value="Cadastrar Video" /></a>
                                         <li>
                                             <li>
-                                            <a href="editora.jsp"> <input type="button" value="Cadastrar Editora" /></a>
+                                            <a href="ServletEditora?action=editora"> <input type="button" value="Cadastrar Editora" /></a>
                                         <li>
                                             <li>
                                             <a href="autores.jsp"> <input type="button" value="Cadastrar Autores " /></a>

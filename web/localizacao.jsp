@@ -6,7 +6,7 @@
 %>
 <html lang="en">
 <head>
-<title>Lozalização</title>
+<title>Localização</title>
 <meta charset="utf-8">
 <meta name="format-detection" content="telephone=no" />
 <link rel="icon" href="images/favicon.ico">
@@ -89,7 +89,7 @@
 	
 	<div class="greet">
   <h3 class="head__1">
-              <marquee>LOZALIZAÇÃO</marquee>
+              <marquee>LOCALIZAÇÃO</marquee>
           </h3>
 		  </div>
 		 

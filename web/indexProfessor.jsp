@@ -60,7 +60,7 @@
             <nav>
               <ul class="sf-menu">
                   <li class="current"><a href="index.jsp">Home</a></li>
-                  <li><a href="cadastrase.jsp">Cadastra-se</a></li>
+                  
                   
                     <%
 	// verificando se tem um atributo login na sessao
@@ -70,19 +70,19 @@
 %>
                
                <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
+               <li><a href="cadastrase.jsp">Cadastra-se</a></li>
                <li><a href="login.jsp">Entrar</a></li>
                <%
         } else{
             %>
                
-               <li><a href="cadastrarItem.jsp">Cadastro de Acervo</a></li>
+               
                
                <li><a href="consultarArcevo.jsp">Consultar Acervo</a></li>
                <li><a href="emprestimo.jsp">Emprestimo</a></li>
                <li><a href="reserva.jsp">Reserva</a></li>
-               <li><a href="relatorio.jsp">Relatórios</a></li>
                <li><a href="localizacao.jsp">Localização</a></li>
-              <li><a href="ServletLogin?acao=logout">Sair</a></li>
+               <li><a href="ServletLogin?acao=logout">Sair</a></li>
                <%
         }
         %>
@@ -143,7 +143,7 @@
       <div class="grid_10 preffix_1 ta__center">
         <div class="greet">
           <h3 class="head__1">
-              <marquee>BIBLIOTECA WEBTEC</marquee>
+              <marquee>BIBLIOTECA WEBTEC, BEM VINDO PROFESSOR </marquee>
           </h3>
      
         </div>

@@ -52,27 +52,7 @@
   </div>
   <div class="card alt">
     <div class="toggle"></div>
-    <h1 class="title">Resgistrar
-      <div class="close"></div>
-    </h1>
-    <form method="post" action="ServletLogin">
-      <div class="input-container">
-        <input type="text"  name="login" id="login" required="required"/>
-        <label for="Username">Login</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="password"  name=""  id="Password" required="required"/>
-        <label for="Password">Senha</label>
-        <div class="bar"></div>
-      </div>
-      <div class="input-container">
-        <input type="password" id="Repeat Password" required="required"/>
-            <label for="Repeat Password">Repeat Password</label>
-        <div class="bar"></div>
-      </div>
-      <div class="button-container">
-        <button><span>Next</span></button>
+   
       </div>
     </form>
   </div>

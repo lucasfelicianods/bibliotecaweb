@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	// verificando se tem um atributo login na sessao
 	// se tiver vai continuar e mostrar o menu
@@ -107,12 +109,14 @@
                                 <form method="POST" action="ServletEditora" name="CadastroEditora">
                                     <ul class="form-style-1">
 
-
+                                          <li><label>Codigo</label>
+                                              <input type="text"  name="codigo" readonly=""  value="<c:out value="${editora.codigo}" />" class="field-divided" placeholder="Codigo" size="150" onfocus="this.style.backgroundColor='#FF0000'" onblur="this.style.backgroundColor='#ffffff'"/></li>
+                                        <li>
                                         <li><label>Nome</label>
-                                            <input type="text"  name="nome" class="field-divided" placeholder="Nome" size="150"/></li>
+                                            <input type="text"  name="nome" class="field-divided"   value="<c:out value="${editora.nome}" />" placeholder="Nome" size="150" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/></li>
                                         <li>
                                         <li><label>Descrição <span class="required">*</span></label>
-                                            <input type="text"  name="descricao" class="field-divided" placeholder="Descricao" size="150"/></li>
+                                            <input type="text"  name="descricao" class="field-divided"  value="<c:out value="${editora.descricao}" />" placeholder="Descricao" size="150" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/></li>
                                         <li>
                                        <li>
                                             <input type="submit" value="Cadastrar" />
@@ -133,6 +137,40 @@
             <div class="container">
 
             </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nome </th>
+                        <th>Descrição </th>
+                        <th>Editar </th>
+                        <th>Excluir </th>
+                    </tr>
+                </thead>
+
+                <c:forEach items="${editoras}" var="editora">
+                    <tr class="record">
+
+                    <tr>
+                        <td class="overflow"><c:out value="${editora.codigo}" /></td>
+                    <td class="overflow"><c:out value="${editora.nome}" /></td>
+                    <td class="overflow"><c:out value="${editora.descricao}" /></td>
+                     <td>
+                        <a href="ServletEditora?action=edit&codigo=<c:out value="${editora.codigo}"/>">
+                    <center> <img class="filter" src="images/editar.png" width="26" /></center>
+                    </a>
+                    </td>
+                    <td>
+                        <a href="ServletEditora?action=delete&codigo=<c:out value="${editora.codigo}"/>">
+                    <center> <img class="filter" src="images/deletar.png" width="26" /></center>
+                    </a>
+                    </td>
+                    </tr>
+                    </thead>
+
+                </c:forEach>
+            </table>
         </section>
         <!--==============================
                       RODA PÉ

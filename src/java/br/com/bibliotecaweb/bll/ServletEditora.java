@@ -33,18 +33,19 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ServletEditora")
 
 public class ServletEditora extends HttpServlet {
- private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
     private static String INSERT_OR_EDIT = "/editora.jsp";
-    private static String LIST_CLIENTE = "/revista.jsp";
-   
+    private static String LIST_CLIENTE = "/editora.jsp";
+
     private EditoraDao editoraDao;
     private Editora editora;
 
-    public ServletEditora() throws SQLException{
+    public ServletEditora() throws SQLException {
         super();
         editoraDao = new EditoraDao();
         editora = new Editora();
-        
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,25 +53,25 @@ public class ServletEditora extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action.equalsIgnoreCase("delete")) {
-            int id = Integer.parseInt(request.getParameter("codigo"));
-           editoraDao.consultaPorCodigo(id);
+            int codigo = Integer.parseInt(request.getParameter("codigo"));
+            editoraDao.deleteEditora(codigo);
             forward = LIST_CLIENTE;
-            request.setAttribute("cliente", editoraDao.consultaPorCodigo(id));
+            request.setAttribute("editoras", editoraDao.TodosEditoras());
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
-            int id = Integer.parseInt(request.getParameter("id"));
-            //Editora editora = editoraDao.consultaPorCodigo(id)
-            //request.setAttribute("lucas", pessoa);
-        } else if (action.equalsIgnoreCase("showCliente")) {
- 
+            int id = Integer.parseInt(request.getParameter("codigo"));
+            Editora editora = editoraDao.getEditoraById(id);
+            request.setAttribute("editora", editora);
+        } else if (action.equalsIgnoreCase("editora")) {
+
             forward = LIST_CLIENTE;
-            
-            List<Editora> todosClientes = editoraDao.TodosEditoras();
-            for(Editora c: todosClientes){
-                System.out.println("lucas:" + c.getNome());
+
+            List<Editora> todosEditora = editoraDao.TodosEditoras();
+            for (Editora c : todosEditora) {
+                System.out.println("editora:" + c.getNome());
             }
-            
-            request.setAttribute("cliente", editoraDao.TodosEditoras());
+
+            request.setAttribute("editoras", editoraDao.TodosEditoras());
         } else {
             forward = INSERT_OR_EDIT;
         }
@@ -80,27 +81,20 @@ public class ServletEditora extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        
+
         Editora editora = new Editora();
-       
         editora.setNome(request.getParameter("nome"));
         editora.setDescricao(request.getParameter("descricao"));
         String codigo = request.getParameter("codigo");
-        
-     
-     
         if (codigo == null || codigo.isEmpty()) {
-          editoraDao.incluirEditora(editora);
-          
-                       
+            editoraDao.incluirEditora(editora);
         } else {
             editora.setCodigo(Integer.parseInt(codigo));
             editoraDao.updateEditoras(editora);
         }
 //       pessoaDao.incluirPessoa(pessoa);
         RequestDispatcher view = request.getRequestDispatcher(LIST_CLIENTE);
-        //request.setAttribute("cliente", alunoDao.getTodosAlunos());
+        request.setAttribute("editoras", editoraDao.TodosEditoras());
         List<Editora> revistas = editoraDao.TodosEditoras();
         request.setAttribute("editoras", revistas);
         view.forward(request, response);

@@ -82,7 +82,7 @@
                <li><a href="reserva.jsp">Reserva</a></li>
                <li><a href="relatorio.jsp">Relatórios</a></li>
                <li><a href="localizacao.jsp">Localização</a></li>
-              <li><a href="ServletLogin?acao=logout">Sair</a></li>
+               <li><a href="ServletLogin?acao=logout">Sair</a></li>
                <%
         }
         %>
@@ -143,7 +143,7 @@
       <div class="grid_10 preffix_1 ta__center">
         <div class="greet">
           <h3 class="head__1">
-              <marquee>BIBLIOTECA WEBTEC</marquee>
+              <marquee>BIBLIOTECA WEBTEC, BEM VINDO FUNCIONARIO</marquee>
           </h3>
      
         </div>
@@ -198,7 +198,7 @@
         <img src="images/page1_img3.jpg" alt="" class="img_inner fleft">
           <p>Trabalho de Conclução do 4 Periodo de ADS</p>
           <p class="offset__1">Alunos:</p>
-          Lucas Feliciano de Souza, Jaire Reis, Thiago Rodrigues
+          Lucas Feliciano de Souza, Jaire Reis, Thiago Rodrigues 
       </div>
       <div class="grid_4">
         <h4>Soluções</h4>

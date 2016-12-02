@@ -21,7 +21,7 @@ public class PessoaDao {
         connection = Conexao.getConnection();
     }
 
-        //---------- PERSISTENCIA PESSOA ---------------------//
+    //---------- PERSISTENCIA PESSOA ---------------------//
     public Pessoa incluirPessoa(Pessoa pessoa) {
 
         try {
@@ -81,7 +81,7 @@ public class PessoaDao {
             preparedStatement.setString(16, pessoa.getCpf());
             preparedStatement.setString(17, pessoa.getLogin());
             preparedStatement.setString(18, pessoa.getSenha());
-            
+
             preparedStatement.setInt(19, pessoa.getTipoUsuario().getCodigo());
 
             preparedStatement.executeUpdate();
@@ -118,7 +118,6 @@ public class PessoaDao {
                 pessoa.setCpf(rs.getString("cpf"));
                 pessoa.setLogin(rs.getString("login"));
                 pessoa.setSenha(rs.getString("senha"));
-                
 
             }
         } catch (SQLException e) {
@@ -128,10 +127,10 @@ public class PessoaDao {
         return pessoa;
 
     }
-    
-    public TipoUsuario retornaPerfilCadastro(String descricao){
-        
-         TipoUsuario tipousuario = new TipoUsuario();
+
+    public TipoUsuario retornaPerfilCadastro(String descricao) {
+
+        TipoUsuario tipousuario = new TipoUsuario();
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
@@ -140,19 +139,18 @@ public class PessoaDao {
 
             if (rs.next()) {
                 tipousuario.setDescricao(rs.getString("descricao"));
-               
-                
-                        }
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return tipousuario;
     }
-    
-    public boolean validaTipoAluno(String descricao){
-        
-         TipoUsuario tipousuario = new TipoUsuario();
+
+    public boolean validaTipoAluno(String descricao) {
+
+        TipoUsuario tipousuario = new TipoUsuario();
         try {
             PreparedStatement preparedStatement = connection.
                     prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
@@ -161,11 +159,64 @@ public class PessoaDao {
 
             if (rs.next()) {
                 tipousuario.setDescricao(rs.getString("descricao"));
-                return true;
-                
-               
-                
-                        }else{
+                if (tipousuario.getDescricao().equals("ALUNO")) {
+                    return true;
+                }
+
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean validaTipoProfessor(String descricao) {
+
+        TipoUsuario tipousuario = new TipoUsuario();
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
+            preparedStatement.setString(1, descricao);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                tipousuario.setDescricao(rs.getString("descricao"));
+                if (tipousuario.getDescricao().equals("PROFESSOR")) {
+                    return true;
+                }
+
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public boolean validaTipoFuncionario(String descricao) {
+        Funcionario funcionario = new Funcionario();
+        TipoUsuario tipousuario = new TipoUsuario();
+        
+        
+        try {
+            PreparedStatement preparedStatement = connection.
+                    prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo  where login = ?");
+            preparedStatement.setString(1, descricao);
+            
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                tipousuario.setDescricao(rs.getString("descricao"));
+                if (tipousuario.getDescricao().equals("FUNCIONARIO")) {
+                    return true;
+                }
+
+            } else {
                 return false;
             }
         } catch (SQLException e) {
@@ -175,22 +226,25 @@ public class PessoaDao {
         return false;
     }
     
-    public boolean validaTipoProfessor(String descricao){
+    public boolean validaTipoAdministrador(String descricao) {
+        Funcionario funcionario = new Funcionario();
+        TipoUsuario tipousuario = new TipoUsuario();
         
-         TipoUsuario tipousuario = new TipoUsuario();
+        
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select descricao from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo where login = ?");
+                    prepareStatement("select descricao,administrador from pessoa p join tipousuario tp on p.codigo_tipousuario = tp.codigo  join funcionario f on f.codigo = p.codigo_tipousuario where login = ?");
             preparedStatement.setString(1, descricao);
+            preparedStatement.setBoolean(2, true);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
                 tipousuario.setDescricao(rs.getString("descricao"));
-                return true;
-                
-               
-                
-                        }else{
+                if (tipousuario.getDescricao().equals("FUNCIONARIO") && funcionario.isAdministrador()) {
+                    return true;
+                }
+
+            } else {
                 return false;
             }
         } catch (SQLException e) {
@@ -199,6 +253,8 @@ public class PessoaDao {
 
         return false;
     }
+
+    
 }
 
 //    public void deleteAluno(int codigo_pessoa) {

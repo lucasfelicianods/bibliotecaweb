@@ -1,8 +1,11 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <%
-	// verificando se tem um atributo login na sessao
-	// se tiver vai continuar e mostrar o menu
-	if(session.getAttribute("login") != null) {
+        // verificando se tem um atributo login na sessao
+    // se tiver vai continuar e mostrar o menu
+    if (session.getAttribute("login") != null) {
 %>
 <html lang="en">
     <head>
@@ -26,10 +29,10 @@
         <script src="js/jquery.ui.totop.js"></script>
         <script src="js/validacoes.js"></script>
         <script>
-                    $(window).load(function () {
-            $().UItoTop({easingType: 'easeOutQuart'});
-                    $('#stuck_container').tmStickUp({});
-            });        </script>
+            $(window).load(function () {
+                $().UItoTop({easingType: 'easeOutQuart'});
+                $('#stuck_container').tmStickUp({});
+            });</script>
 
     </head>
     <body>
@@ -106,7 +109,7 @@
                                 <form>
                                     <ul class="form-style-1">
 
-                                       <li>
+                                        <li>
                                             <label>Parâmetros de Pesquisa</label>
                                             <select name="field4" class="field-select">
                                                 <option value="Advertise"></option>
@@ -116,7 +119,7 @@
                                                 <option value="General Question">Titulo</option>
                                             </select>
                                         </li>
-                                       
+
                                         <li>
                                             <input type="submit" value="Consultar" />
                                             <input type="submit" value="Limpar" />
@@ -135,6 +138,56 @@
             <div class="container">
 
             </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nome </th>
+                        <th>Cpf </th>
+                        <th>data Nascimento </th>
+                        <th>Telefone </th>
+                        <th>Celular </th>
+                        <th>Endereco </th>
+                        <th>Bairro </th>
+                        <th>Cep </th>
+                        <th>E-mail </th>
+                        <th>Obs </th>
+                        <th>Editar </th>
+                        <th>Excluir </th>
+                    </tr>
+                </thead>
+
+                <c:forEach items="${cliente}" var="lucas">
+                    <tr class="record">
+
+                    <tr>
+                        <td class="overflow"><c:out value="${lucas.id}" /></td>
+                    <td class="overflow"><c:out value="${lucas.nome}" /></td>
+                    <td class="overflow"><c:out value="${lucas.cpf}" /></td>
+                    <td class="overflow"><c:out value="${lucas.dataNascimento}" /></td>
+                    <td class="overflow"><c:out value="${lucas.telefone}" /></td>
+                    <td class="overflow"><c:out value="${lucas.celular}" /></td>
+                    <td class="overflow"><c:out value="${lucas.endereco}" /></td>
+                    <td class="overflow"><c:out value="${lucas.bairro}" /></td>
+                    <td class="overflow"><c:out value="${lucas.cep}" /></td>
+                    <td class="overflow"><c:out value="${lucas.email}" /></td>
+                    <td class="overflow"><c:out value="${lucas.obs}" /></td>
+                    <td>
+                        <a href="ControladorCliente?action=edit&id=<c:out value="${lucas.id}"/>">
+                    <center> <img class="filter" src="images/editar.png" width="26" /></center>
+                    </a>
+                    </td>
+                    <td>
+                        <a href="ControladorCliente?action=delete&id=<c:out value="${lucas.id}"/>">
+                    <center> <img class="filter" src="images/deletar.png" width="26" /></center>
+                    </a>
+                    </td>
+                    </tr>
+                    </thead>
+
+                </c:forEach>
+            </table>
+
         </section>
         <!--==============================
                       footer
@@ -154,11 +207,11 @@
     </body>
 </html>
 <%
-	// se não existir um login na sessao, 
-	// vai enviar para a página de login novamente
-	} else {
+        // se não existir um login na sessao, 
+    // vai enviar para a página de login novamente
+} else {
 %>
-	<jsp:forward page="login.jsp"></jsp:forward>
+<jsp:forward page="login.jsp"></jsp:forward>
 <%
-}
+    }
 %>

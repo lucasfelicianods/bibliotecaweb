@@ -2,6 +2,7 @@ package br.com.bibliotecaweb.bll;
 
 import br.com.bibliotecaweb.dal.PessoaDao;
 import br.com.bibliotecaweb.dal.ValidaLogin;
+import br.com.bibliotecaweb.model.Funcionario;
 import br.com.bibliotecaweb.model.Pessoa;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,7 +30,7 @@ public class ServletLogin extends HttpServlet {
         dal = new ValidaLogin();
         perfilLogin = new PessoaDao();
     }
-
+    Funcionario funcionario = new Funcionario();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             processRequest(request, response);
@@ -64,15 +65,23 @@ public class ServletLogin extends HttpServlet {
                 HttpSession sessao = request.getSession();
                 // setando um atributo da sessao
                 sessao.setAttribute("login", request.getParameter("login"));
-//                if (perfilLogin.validaTipoAluno(login) == true) {
-//                    RequestDispatcher r = request.getRequestDispatcher("indexAlunoProfessor.jsp");
-//                    r.forward(request, response);
-//                }
-//                if (perfilLogin.validaTipoProfessor(login) == true) {
-//                    RequestDispatcher r = request.getRequestDispatcher("indexAlunoProfessor.jsp");
-//                    r.forward(request, response);
-//                }
-//                
+                if (perfilLogin.validaTipoAluno(login) == true) {
+                    RequestDispatcher r = request.getRequestDispatcher("indexAluno.jsp");
+                    r.forward(request, response);
+                }
+                if (perfilLogin.validaTipoProfessor(login) == true) {
+                    RequestDispatcher r = request.getRequestDispatcher("indexProfessor.jsp");
+                    r.forward(request, response);
+                }
+                if (perfilLogin.validaTipoFuncionario(login) == true ) {
+                    RequestDispatcher r = request.getRequestDispatcher("indexFuncionario.jsp");
+                    r.forward(request, response);
+                }
+                 if (perfilLogin.validaTipoAdministrador(login) == true) {
+                    RequestDispatcher r = request.getRequestDispatcher("indexAdministrador.jsp");
+                    r.forward(request, response);
+                }
+////                
 
                 pagina = "index.jsp";
 

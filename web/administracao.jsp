@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <%
-        // verificando se tem um atributo login na sessao
-    // se tiver vai continuar e mostrar o menu
-    if (session.getAttribute("login") != null) {
+	// verificando se tem um atributo login na sessao
+	// se tiver vai continuar e mostrar o menu
+	if(session.getAttribute("login") != null) {
 %>
 <html lang="en">
     <head>
-        <title>Relatório</title>
+        <title>Administração</title>
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no" />
         <link rel="icon" href="images/favicon.ico">
@@ -89,7 +90,7 @@
 
                     <div class="greet">
                         <h3 class="head__1">
-                            <marquee>EMITIR RLATÓRIOS</marquee>
+                            <marquee>ESCOLHA SEU TIPO DE CADASTRO</marquee>
                         </h3>
                     </div>
 
@@ -106,70 +107,32 @@
 
                                 <form>
                                     <ul class="form-style-1">
-                                        <li>
-                                            <label>Escolha seu tipo de Relatórios</label>
-                                            <select name="field4" class="field-select">
-                                                <option value="Advertise">Item mais reservados</option>
-                                                <option value="Partnership">Pessoa que mais loco item</option>
-                                                <option value="General Question">Teste</option>
-                                            </select>
-                                        </li>
-                                        <li>
-                                            <input type="submit" value="Gerar Relatório" />
 
+                                        <li>
+                                            <a href="artigo.jsp"> <input  type="button" size="100" value="Administração de Aluno " /></a>
                                         </li>
+                                        <li>
+                                            <a href="livro.jsp"><input type="button" value="Administração de professor" /></a>
+                                        </li>
+                                       
                                     </ul>
                                 </form>
 
                             </div>
+                            
                         </div>
                         <div class="grid_4">
 
                         </div>
-                        
-                        
                     </div>
-                    
                 </div>
-                    
-
-                    
             </article>
             <div class="container">
 
             </div>
-            
-            <table>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Points</th>
-                    </tr>
-                    <tr>
-                        <td>Peter</td>
-                        <td>Griffin</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>Lois</td>
-                        <td>Griffin</td>
-                        <td>$150</td>
-                    </tr>
-                    <tr>
-                        <td>Joe</td>
-                        <td>Swanson</td>
-                        <td>$300</td>
-                    </tr>
-                    <tr>
-                        <td>Cleveland</td>
-                        <td>Brown</td>
-                        <td>$250</td>
-                    </tr>
-                </table>
-                
         </section>
         <!--==============================
-                      rodapé
+                      roda pé
         =================================-->
         <footer id="footer">
             <div class="container">
@@ -186,11 +149,11 @@
     </body>
 </html>
 <%
-        // se não existir um login na sessao, 
-    // vai enviar para a página de login novamente
-} else {
+	// se não existir um login na sessao, 
+	// vai enviar para a página de login novamente
+	} else {
 %>
-<jsp:forward page="login.jsp"></jsp:forward>
+	<jsp:forward page="login.jsp"></jsp:forward>
 <%
-    }
+}
 %>
