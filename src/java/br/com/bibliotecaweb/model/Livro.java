@@ -5,15 +5,15 @@
  */
 package br.com.bibliotecaweb.model;
 
-/**
- *
- * @author luks_
- */
+
 public class Livro {
     
     private int codigo_de_barra;
     private int isbn;
     private String descricao;
+    private Midia midia;
+    private Editora editora;
+    
 
     public int getCodigo_de_barra() {
         return codigo_de_barra;

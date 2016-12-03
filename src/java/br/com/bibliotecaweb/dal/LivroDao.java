@@ -1,7 +1,9 @@
+
 package br.com.bibliotecaweb.dal;
 
 import br.com.bibliotecaweb.model.Aluno;
 import br.com.bibliotecaweb.model.Editora;
+import br.com.bibliotecaweb.model.Livro;
 import br.com.bibliotecaweb.model.Midia;
 import br.com.bibliotecaweb.model.OrdenarEditora;
 import br.com.bibliotecaweb.model.Pessoa;
@@ -14,64 +16,66 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditoraDao {
+public class LivroDao {
 
     private Connection connection;
     private OrdenarEditora ordenarEditora; 
-    public EditoraDao() {
+    public LivroDao() {
         connection = Conexao.getConnection();
         
     }
 
-        //---------- Midia Dao---------------------//
-    public Editora incluirEditora(Editora editora) {
+        //---------- Livro Dao---------------------//
+    public Livro incluirLivro(Livro livro) {
 
         try {
             PreparedStatement preparedStatement = connection
                     .prepareStatement(
-                            "insert into editora("
-                            + "nome,"
-                            + "descricao)"
+                            "insert into livro("
+                            +"isbn,"
+                            + "codigo_barras,"
+                            + "descricao,"
+                            +"codigo_editors,"
+                            + "codigo_midia)"
                             + "values "
-                            + "(?,?)");
+                            + "(?,?,?,?,?)");
 
             // verificar o tipo de midia que esta sendo cadastrado
-            preparedStatement.setString(1, editora.getNome());
-            preparedStatement.setString(2, editora.getDescricao());
+//            preparedStatement.setString(1, livro.getCodigo_de_barra());
+//            preparedStatement.setString(2, editora.getDescricao());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return editora;
+        return livro;
     }
 //
-    public Aluno consultarPorMatricula(String matricula) {
-        Aluno aluno = new Aluno();
+    public Editora consultarPorNome(String nome) {
+       Editora editora = new Editora();
         try {
             PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from aluno where matricula=?");
-            preparedStatement.setString(1, matricula);
+                    prepareStatement("select * from editora where matricula=?");
+            preparedStatement.setString(1, nome);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                aluno.setCodigo(rs.getInt("codigo"));
-                aluno.setMatricula(rs.getString("matricula"));
-                aluno.setCurso(rs.getString("curso"));
-
-            }
+                editora.setCodigo(rs.getInt("codigo"));
+                editora.setDescricao(rs.getString("descricao"));
+                editora.setNome(rs.getString("nome"));
+             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return aluno;
+        return editora;
 
     }
 
-    public void deleteEditora(int codigo) {
+    public void deleteditora(int codigo) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from editora where codigo=?");
+                    .prepareStatement("delete from editora where id=?");
             // Parameters start with 1
             preparedStatement.setInt(1, codigo);
             preparedStatement.executeUpdate();
@@ -80,18 +84,17 @@ public class EditoraDao {
             e.printStackTrace();
         }
     }
-    
-    
 
     public void updateEditoras(Editora editora) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("update editora set nome=?,descricao=? where codigo=?");
+                    .prepareStatement("update editora set nome=?,descricao? "
+                            + "where cogigo=?");
             // Parameters start with 1
-            
+            preparedStatement.setInt(1, editora.getCodigo());
             preparedStatement.setString(1, editora.getNome());
-            preparedStatement.setString(2, editora.getDescricao());
-            preparedStatement.setInt(3, editora.getCodigo());
+            preparedStatement.setString(1, editora.getDescricao());
+
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -157,50 +160,5 @@ public class EditoraDao {
 
         return editora;
     }
-    
-     public Editora getEditoraById(int editoraId) {
-		Editora editora = new Editora();
-		try {
-			PreparedStatement preparedStatement = connection.
-					prepareStatement("select * from editora where codigo=?");
-			preparedStatement.setInt(1, editoraId);
-			ResultSet rs = preparedStatement.executeQuery();
-			
-			if (rs.next()) {
-				
-                                editora.setCodigo(rs.getInt("codigo"));
-                                editora.setNome(rs.getString("nome"));
-				editora.setDescricao(rs.getString("descricao"));
-                            
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return editora;
-	}
-    
-public Editora consultarPorNome(String nome) {
-       Editora editora = new Editora();
-        try {
-            PreparedStatement preparedStatement = connection.
-                    prepareStatement("select * from editora where nome=?");
-            preparedStatement.setString(1, nome);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            if (rs.next()) {
-                editora.setCodigo(rs.getInt("codigo"));
-                editora.setDescricao(rs.getString("descricao"));
-                editora.setNome(rs.getString("nome"));
-             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return editora;
-
-    }
-
 
 }

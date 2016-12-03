@@ -1,4 +1,10 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.bibliotecaweb.bll;
+
 
 
 import br.com.bibliotecaweb.dal.AlunoDao;
@@ -39,22 +45,22 @@ import java.util.List;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/ServletRevista")
-public class ServletRevista extends HttpServlet {
+@WebServlet("/ServletLivro")
+public class ServletLivro extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/revista.jsp";
+    private static String INSERT_OR_EDIT = "/livro.jsp";
     private static String LIST_CLIENTE = "/index.jsp";
     private EditoraDao editoraDao;
     private MidiaDao midiaDao;
     private RevistaDao revistaDao;
     
     
-    public ServletRevista() throws SQLException{
+    public ServletLivro() throws SQLException{
         super();
         editoraDao = new EditoraDao();
-        midiaDao = new MidiaDao();
-        revistaDao = new RevistaDao();
+       // midiaDao = new MidiaDao();
+      
       
     }
  
@@ -67,6 +73,9 @@ public class ServletRevista extends HttpServlet {
             forward = INSERT_OR_EDIT;
             List<Editora> editoras = editoraDao.TodosEditoras();
             request.setAttribute("editoras", editoras);
+        
+    
+
         
         } else if (action.equalsIgnoreCase("edit")) {
             forward = INSERT_OR_EDIT;
@@ -91,8 +100,6 @@ public class ServletRevista extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String editoraNome = request.getParameter("editora");
-        Editora editora = editoraDao.consultarPorNome(editoraNome);
         
         Midia midia = new Midia();
         midia.setTitulo(request.getParameter("titulo"));
@@ -102,20 +109,19 @@ public class ServletRevista extends HttpServlet {
         String codigo = request.getParameter("codigo");      
         revista.setEdicao(request.getParameter("edicao"));
         revista.setNumero_edicao(request.getParameter("numero_edicao"));
-        revista.setEditora(editora);
-        
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            revista.setPublicao(sdf.parse(request.getParameter("data_publicacao")));
+            revista.setPublicao(sdf.parse(request.getParameter("publicacao")));
         } catch (ParseException ex) {
             System.out.println("Erro de conversão da data: "
                     + "\nMessage: " + ex.getMessage());
         }
         
-         
+        
         if (codigo == null || codigo.isEmpty()) {
             Midia midiaIncluido = midiaDao.incluirMidia(midia);
             revista.setMidia(midiaIncluido);
+            revista.getEditora().getCodigo();
             revistaDao.incluirRevista(revista);
             
             

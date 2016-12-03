@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <%
 	// verificando se tem um atributo login na sessao
@@ -105,7 +106,7 @@
                         <div class="grid_4">
                             <div class="block-3">
 
-                                <form>
+                                 <form method="POST" action="ServletLivro" name="cadastrolivro">
                                     <ul class="form-style-1">
 
                                         <li><label>Titulo <span class="required">*</span></label>
@@ -122,9 +123,9 @@
                                         <li>
                                             <select id="editora" name="editora" style="width:49%;">
                                                 <option value="Selecione uma Editora">Selecione Uma Editora</option>				
-                                                <c:forEach items="${editoras}" var="editora" size="150">
-                                                    <option value="${editora.nome}">${editora.nome}</option>								
-                                                </c:forEach>
+                                                <c:forEach items="${editoras}" var="editora">
+								<option value="${editora.nome}">${editora.nome}</option>								
+							</c:forEach>
                                             </select>
                                                 <br>
                                                 <br>
@@ -134,7 +135,7 @@
                                                     <option value="${autor.nome}">${autor.nome}</option>								
                                                 </c:forEach>
                                                             
-                                            </select>
+                                            </select> 
                                                                 
                                             <li>
                                             <label>Exemplar Interno</label>

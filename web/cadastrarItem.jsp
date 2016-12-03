@@ -112,7 +112,7 @@
                                             <a href="artigo.jsp"> <input type="button" value="Cadastrar Artigo" /> </a>
                                         </li>
                                         <li>
-                                            <a href="livro.jsp"><input type="button" value="Cadastrar Livro" /></a>
+                                            <a href="ServletLivro?acao=abrir"><input type="button" value="Cadastrar Livro" /></a>
                                         </li>
                                         <li>
                                              <a href="ServletRevista?acao=abrir"><input type="button" value="Cadastrar Revista  " /></a>

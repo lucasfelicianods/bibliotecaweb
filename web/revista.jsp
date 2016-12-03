@@ -111,16 +111,16 @@
 
                                         
                                          <li><label> Titulo <span class="required">*</span></label>
-                                            <input type="text"  name="titulo" class="field-divided" placeholder="Titulo" size="150"/></li>
+                                             <input type="text"  name="titulo" class="field-divided" required placeholder="Titulo" size="150"/></li>
                                         
                                         <li><label>Edição</label>
-                                            <input type="text"  name="edicao" class="field-divided" placeholder="edição" size="150"/></li>
+                                            <input type="text"  name="edicao" class="field-divided"  required placeholder="edição" size="150"/></li>
                                         <li>
                                         <li><label>Numero de Edição <span class="required">*</span></label>
-                                            <input type="text"  name="numerodaedicao" class="field-divided" placeholder="numerodaedicao" size="150"/></li>
+                                            <input type="text"  name="numero_edicao" class="field-divided"  required placeholder="numero da edicao" size="150"/></li>
                                         <li>
                                         <li><label>Data Da Publicação <span class="required">*</span></label>
-                                            <input type="text"  name="dataDaPublicacao" class="field-divided" placeholder="Data Da Publicação" size="150"/></li>
+                                            <input type="text"  name="data_publicacao" class="field-divided"  required placeholder="Data Da Publicação" size="150"/></li>
                                         <li>
                                         <div>
                                             <li>

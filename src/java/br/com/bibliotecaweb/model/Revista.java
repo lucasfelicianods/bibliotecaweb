@@ -5,7 +5,7 @@
  */
 package br.com.bibliotecaweb.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Revista {
     private int codigo;
     private String edicao;
     private String numero_edicao;
-    private Date data_publicao;
+    private Date publicao;
     private Midia midia;
     private Editora editora;
     
@@ -37,13 +37,6 @@ public class Revista {
         this.numero_edicao = numero_edicao;
     }
 
-    public Date getData_publicao() {
-        return data_publicao;
-    }
-
-    public void setData_publicao(Date data_publicao) {
-        this.data_publicao = data_publicao;
-    }
 
     public Midia getMidia() {
         return midia;
@@ -67,6 +60,14 @@ public class Revista {
 
     public void setEditora(Editora editora) {
         this.editora = editora;
+    }
+
+    public Date getPublicao() {
+        return publicao;
+    }
+
+    public void setPublicao(Date publicao) {
+        this.publicao = publicao;
     }
     
     

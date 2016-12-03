@@ -113,10 +113,10 @@
                                               <input type="text"  name="codigo" readonly=""  value="<c:out value="${editora.codigo}" />" class="field-divided" placeholder="Codigo" size="150" onfocus="this.style.backgroundColor='#FF0000'" onblur="this.style.backgroundColor='#ffffff'"/></li>
                                         <li>
                                         <li><label>Nome</label>
-                                            <input type="text"  name="nome" class="field-divided"   value="<c:out value="${editora.nome}" />" placeholder="Nome" size="150" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/></li>
+                                            <input type="text"  name="nome" class="field-divided"  required value="<c:out value="${editora.nome}" />" placeholder="Nome" size="150" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/></li>
                                         <li>
                                         <li><label>Descrição <span class="required">*</span></label>
-                                            <input type="text"  name="descricao" class="field-divided"  value="<c:out value="${editora.descricao}" />" placeholder="Descricao" size="150" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/></li>
+                                            <input type="text"  name="descricao" class="field-divided" required value="<c:out value="${editora.descricao}" />" placeholder="Descricao" size="150" onfocus="this.style.backgroundColor='#D3D3D3'" onblur="this.style.backgroundColor='#ffffff'"/></li>
                                         <li>
                                        <li>
                                             <input type="submit" value="Cadastrar" />
